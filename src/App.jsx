@@ -1,4 +1,5 @@
 import './App.css'
+import Body from './components/body'
 import Control from './components/Control'
 import HeaderRender from './components/Header'
 
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <HeaderRender />
       <Control />
+      <Body />
     </div>
   )
 }
