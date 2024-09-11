@@ -7,7 +7,7 @@ import ToggleSwitch from "./btn/ToggleSwitch";
 function Control() {
     
   return (
-    <div className="bg-[#F4F4F4] flex gap-2 pr-8 pl-6 mb-6">
+    <div className="bg-[#F4F4F4] flex gap-1 pr-8 pl-6 mb-6">
       <DatePicKButton year="2024" month="Apr" />
       <PreviousButton />
       <DayPickButton day="Today" />

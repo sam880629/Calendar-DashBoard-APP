@@ -15,24 +15,24 @@ const Dates = [
   { week: "Mon", day: 27, month: "May" },
   { week: "Tue", day: 28, month: "May" },
   { week: "Wed", day: 29, month: "May" },
-  // { week: "Thu", day: 30, month: "May" },
-  // { week: "Fri", day: 31, month: "May" },
+  { week: "Thu", day: 30, month: "May" },
+  { week: "Fri", day: 31, month: "May" },
 ];
 
 function MoonTable() {
   const buttons = [{ text: "room" }, { text: "floor" }];
-  const FilterStyle = `w-40 mb:w-60 lg:w-[352px] bg-white flex items-center border-[#E1E1E1] border-b`;
+  const FilterStyle = `w-40 mb:w-60  bg-white flex items-center border-[#E1E1E1] border-b`;
 
   return (
-    <tr className="">
-      <th className={`col-span-1 flex gap-4 ${FilterStyle}`}>
+    <div className="text-center  w-full grid grid-cols-[352px_repeat(auto-fit,minmax(0,1fr))]">
+      <div className={`flex gap-4 ${FilterStyle}`}>
         <ButtonGroup buttons={buttons} />
         <FilterButton />
-      </th>
+      </div>
       {Dates.map((Date, index) => (
         <MoonItem key={index} Date={Date} />
       ))}
-    </tr>
+    </div>
   );
 }
 
