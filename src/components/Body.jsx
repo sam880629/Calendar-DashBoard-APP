@@ -6,12 +6,8 @@ import MoonCol from "./body/MoonCol";
 const Body = () => {
 
   return (
-    <section className="bg-white dark:bg-dark  ">
-      <div className="flex flex-nowrap">
-        <div className="w-full ">
+    <section className="bg-[#F4F4F4]">
             <MoonCol />
-        </div>
-      </div>
     </section>
   );
 };
