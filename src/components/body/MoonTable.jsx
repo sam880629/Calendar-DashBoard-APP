@@ -18,22 +18,112 @@ const Dates = [
   { week: "Thu", day: 30, month: "May" },
   { week: "Fri", day: 31, month: "May" },
 ];
+const DD = {
+  2024: {
+    May: {
+      18: {
+        rooms: {
+          ECD: {
+            Speed: {
+              102: {
+                status: "occupied",
+                booked_by: {
+                  name: "Trisha Hung",
+                  reservation_id: "Cert#563212",
+                  contact: "0999-999-999",
+                },
+              },
+              104: {
+                status: "available",
+                booked_by: null,
+              },
+            },
+            Discovery: {
+              202: {
+                status: "occupied",
+                booked_by: {
+                  name: "James Chen",
+                  reservation_id: "Cert#781233",
+                  contact: "0922-222-222",
+                },
+              },
+              204: {
+                status: "clean",
+                booked_by: null,
+              },
+            },
+          },
+          STD: {
+            "Racing - Beyond": {
+              216: {
+                status: "occupied",
+                booked_by: {
+                  name: "Lisa Chen",
+                  reservation_id: "Cert#991032",
+                  contact: "0955-555-555",
+                },
+              },
+              218: {
+                status: "available",
+                booked_by: null,
+              },
+            },
+            "Racing - Suite": {
+              316: {
+                status: "occupied",
+                booked_by: {
+                  name: "Eric Yang",
+                  reservation_id: "Cert#912034",
+                  contact: "0933-333-333",
+                },
+              },
+              318: {
+                status: "clean",
+                booked_by: null,
+              },
+              320: {
+                status: "occupied",
+                booked_by: {
+                  name: "Anna Wong",
+                  reservation_id: "Cert#332187",
+                  contact: "0911-111-111",
+                },
+              },
+            },
+          },
+        },
+      },
+      19: {
+        // 類似上面的資料結構，隨機生成其他天的資料
+      },
+      20: {
+        // 類似上面的資料結構，隨機生成其他天的資料
+      },
+      // 持續到31日
+    },
+  },
+};
 
-function MoonTable() {
+const MoonTable = () => {
   const buttons = [{ text: "room" }, { text: "floor" }];
   const FilterStyle = `w-40 mb:w-60  bg-white flex items-center border-[#E1E1E1] border-b`;
 
   return (
-    <div className="text-center  w-full grid grid-cols-[352px_repeat(auto-fit,minmax(0,1fr))]">
+    <div
+      className="text-center w-full grid gap-4 
+  grid-cols-[160px_1fr] sm:grid-cols-[160px_1fr] md:grid-cols-[240px_1fr] lg:grid-cols-[352px_1fr]"
+    >
       <div className={`flex gap-4 ${FilterStyle}`}>
         <ButtonGroup buttons={buttons} />
         <FilterButton />
       </div>
-      {Dates.map((Date, index) => (
-        <MoonItem key={index} Date={Date} />
-      ))}
+      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-7 lg:grid-cols-14  grid-flow-col">
+        {Dates.map((Date, index) => (
+          <MoonItem key={index} Date={Date} />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default MoonTable;

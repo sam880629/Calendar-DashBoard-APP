@@ -4,7 +4,7 @@ import PreviousButton from "./btn/PreviousButton";
 import DayPickButton from "./btn/DayPickButton";
 import ToggleSwitch from "./btn/ToggleSwitch";
 
-function Control() {
+const Control =()=> {
     
   return (
     <div className="bg-[#F4F4F4] flex gap-1 pr-8 pl-6 mb-6">

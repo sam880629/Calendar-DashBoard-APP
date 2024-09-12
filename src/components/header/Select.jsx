@@ -1,5 +1,5 @@
 // 下拉選單組件
-function Select({ title, children }) {
+const Select = ({ title, children }) => {
     return (
         <div className="hidden sm:flex  gap-2 justify-center items-center cursor-pointer">
             {children}

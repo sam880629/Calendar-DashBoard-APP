@@ -1,5 +1,5 @@
 // 下一個按鈕
-function NextButton() {
+const NextButton =()=> {
 
     return(
     <div className="flex justify-center items-center cursor-pointer bg-white w-12 h-12 border border-[#E9E9E9] rounded ">

@@ -1,5 +1,5 @@
 // 返回按鈕
-function PreviousButton() {
+const PreviousButton= () => {
 
     return (
         <div className="flex justify-center items-center cursor-pointer bg-white w-12 h-12 border border-[#E9E9E9] rounded ">

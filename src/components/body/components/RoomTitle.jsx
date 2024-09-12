@@ -1,10 +1,10 @@
-function RoomTitle({ roomType, children }) {
+const RoomTitle = ({roomType, icon_path}) => {
   return (
-    <td className="w-40 mb:w-60 lg:w-[352px] flex  items-center gap-2 min-h-10 pl-6 border-[#E1E1E1]  border-transparent ">
+    <td className=" flex  items-center gap-2 min-h-10 pl-6 border-[#E1E1E1]  border-transparent ">
       <p className="">{roomType}</p>
-      {children}
+      <div dangerouslySetInnerHTML={{ __html: icon_path }} />
     </td>
   );
-}
+};
 
 export default RoomTitle;

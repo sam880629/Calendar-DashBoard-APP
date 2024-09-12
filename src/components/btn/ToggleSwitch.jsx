@@ -1,6 +1,6 @@
 import  { useState } from 'react'
 // 切換開關
-function ToggleSwitch() {
+const ToggleSwitch = () =>{
   const [isChecked, setIsChecked] = useState(false)
 
   const handleCheckboxChange = () => {

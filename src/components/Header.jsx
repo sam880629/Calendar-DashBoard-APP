@@ -3,7 +3,7 @@ import Select from "./header/select";
 
 
 // 渲染header
-function HeaderRender() {
+const HeaderRender= () =>{
     return (
         <header className="bg-white h-[64px] mb-4 flex items-center gap-4 py-0 pr-4 pl-4 lg:pl-[80px] lg:pr-8">
             <Hemburger />

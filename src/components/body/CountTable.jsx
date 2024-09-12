@@ -18,9 +18,10 @@ const RoomDate = [
   { count: 5 },
 ];
 
-function CountTable() {
+const CountTable = () => {
   return (
-    <div className="bg-[#F4F4F4] h-10 grid grid-cols-[352px_repeat(auto-fit,minmax(0,1fr))]">
+    <td className="bg-[#F4F4F4] h-10 text-center w-full grid gap-4 
+  grid-cols-[160px_1fr] sm:grid-cols-[160px_1fr] md:grid-cols-[240px_1fr] lg:grid-cols-[352px_1fr] " >
       <RoomTitle roomType="EMC">
         <svg
           width="20"
@@ -35,11 +36,14 @@ function CountTable() {
           />
         </svg>
       </RoomTitle>
-      {RoomDate.map((val, index) => (
-        <RoomCount key={index} count={val.count} />
-      ))}
-    </div>
+      <td className="">
+        {RoomDate.map((val, index) => (
+          <RoomCount key={index} count={val.count} />
+        ))}
+      </td>
+  
+    </td>
   );
-}
+};
 
 export default CountTable;

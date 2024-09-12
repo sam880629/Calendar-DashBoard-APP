@@ -1,25 +1,40 @@
-// 顯示月份BOX
-function MoonItem({ Date }) {
-    
-  let ThStyle = `border-[#E1E1E1] border-l border-b border-r border-transparent `;
-  // 判斷是否是周末
-  const isWeekend = Date.week === "Sat" || Date.week === "Sun";
+import moment from "moment";
 
-  //樣式
-  const containerClasses = `text-center flex flex-col justify-center ${
-    isWeekend ? "bg-[#FFFFF0]" : "bg-white"
+const isWeekend = (date) => {
+  const day = new Date(date).getDay(); // 0 = Sunday, 6 = Saturday
+  return day === 0 || day === 6;
+};
+
+// 顯示月份BOX
+const MoonItem = ({ dateStr }) => {
+  const isHoliday = isWeekend(dateStr);
+  const isToday = moment(dateStr).isSame("2024-5-20", "day"); //今日
+
+  const week = moment(dateStr).format("ddd"); //星期
+  const day = moment(dateStr).format("DD"); //日
+  const mon = moment(dateStr).format("MMM"); //月
+
+  // class樣式
+  let containerClasses = ` border-[#E1E1E1] border-l border-b border-r  ${
+    isHoliday ? "bg-[#FFFFF0]" : "bg-white"
   }`;
   const weekClasses = `text-sm font-semibold ${
-    isWeekend ? "text-[#FF6E6E]" : "text-[#4B4B4B]"
+    isHoliday ? "text-[#FF6E6E]" : "text-[#4B4B4B]"
   }`;
+  let dayClasses = "text-[#1E1E1E] font-bold";
+  // 判斷日期樣式變化
+  if (isToday) {
+    containerClasses = "bg-[#EDF5FF] border-[#4B91FF] border-t-4";
+    dayClasses = "text-[#1994FC] font-bold";
+  }
 
   return (
-    <div className={`${containerClasses} ${ThStyle}`}>
-      <p className={weekClasses}>{Date.week}</p>
-      <p className="text-[#1E1E1E] font-bold">{Date.day}</p>
-      <p className="text-sm text-[#787878]">{Date.month}</p>
-    </div>
+    <th className={containerClasses}>
+      <p className={weekClasses}>{week}</p>
+      <p className={dayClasses}>{day}</p>
+      <p className="text-sm text-[#787878]">{mon}</p>
+    </th>
   );
-}
+};
 
 export default MoonItem;

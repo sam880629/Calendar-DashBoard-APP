@@ -1,4 +1,4 @@
-function Hemburger() {
+const Hemburger = ()=> {
 
     return (
         <div className=' flex md:hidden cursor-pointer'>

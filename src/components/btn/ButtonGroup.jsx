@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // 按鈕
-function Button({ text, onClick, isActive  }) {
+const Button = ({ text, onClick, isActive  })=> {
 
     return (
         <button
@@ -15,8 +15,8 @@ function Button({ text, onClick, isActive  }) {
 }
   
 // 群組按鈕
-function ButtonGroup({ buttons }) {
-
+const ButtonGroup =()=> {
+    const buttons = [{ text: "room" }, { text: "floor" }];//按鈕名稱
     const [open, setOpen] = useState(buttons[0].text)
     const handledOpen = (Category) => {
         setOpen(Category);
