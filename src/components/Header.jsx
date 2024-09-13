@@ -5,7 +5,7 @@ import Select from "./header/select";
 // 渲染header
 const HeaderRender= () =>{
     return (
-        <header className="bg-white h-[64px] mb-4 flex items-center gap-4 py-0 pr-4 pl-4 lg:pl-[80px] lg:pr-8">
+        <header className="bg-white h-[64px] mb-4 flex items-center gap-4 py-0 pr-4 pl-4 xl:pl-[80px] xl:pr-8">
             <Hemburger />
             <div className="mr-auto cursor-pointer">
                 DashBoard

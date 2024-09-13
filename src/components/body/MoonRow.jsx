@@ -8,7 +8,7 @@ const MoonRow = ({ dates }) => {
   return (
     <div className="flex w-full">
       {/* room / floor 按鈕 */}
-      <div className="flex gap-4 bg-white items-center border-[#E1E1E1] border-b w-[160px] mb:w-[240px] lg:w-[352px]">
+      <div className="flex gap-4 bg-white items-center border-[#E1E1E1] border-b w-[160px] md:w-[240px] xl:w-[352px]">
         <ButtonGroup buttons={buttons} />
         <FilterButton />
       </div>

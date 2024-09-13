@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import MoonRow from "./MoonRow";
 import RoomTypeRow from "./RoomTypeRow";
 import RoomRow from "./RoomRow";
@@ -93,23 +93,68 @@ const dates = [
   "2024-5-30",
   "2024-5-31",
 ];
+const LAYOUT = {
+  MOBILE: 'mobile',
+  TABLET: 'tablet',
+  DESKTOP: 'desktop',
+}
+// 各裝置寬度
+const MAX_MOBILE_WIDTH = 768
+const MAX_TABLET_WIDTH = 1440
 
 const MoonTable = () => {
+  const [ currentLayout, setCurrentLayout ] = useState(LAYOUT.DESKTOP)
+
+  useEffect(() => {
+    const handleWindowWidth = () => {
+      const windowWidth = window.innerWidth;
+
+      if (windowWidth < MAX_MOBILE_WIDTH) {
+        setCurrentLayout(LAYOUT.MOBILE);
+      } else if (windowWidth >= MAX_MOBILE_WIDTH && windowWidth < MAX_TABLET_WIDTH) {
+        setCurrentLayout(LAYOUT.TABLET);
+      } else {
+        setCurrentLayout(LAYOUT.DESKTOP);
+      }
+;
+    };
+    handleWindowWidth();
+    // 監聽視窗大小變化
+    window.addEventListener("resize", handleWindowWidth);
+    // 清除事件監聽器
+    return () => {
+    window.removeEventListener("resize", handleWindowWidth);
+    };
+  }, [currentLayout]); 
+
+  const displayDates = getDisplayDates(currentLayout);
   return (
     <>
       {/* {按鈕/日期} */}
-      <MoonRow dates={dates} />
+      <MoonRow dates={displayDates} />
 
       {roomData.map((floors, index) => (
         <Fragment key={index}>
           {/* 房型 */}
-          <RoomTypeRow floors={floors} dates={dates} />
+          <RoomTypeRow floors={floors} dates={displayDates} />
           {/* 房間名稱和訂單 */}
-          <RoomRow rooms={floors.rooms} dates={dates} />
+          <RoomRow rooms={floors.rooms} dates={displayDates} />
         </Fragment>
       ))}
     </>
   );
 };
+
+// 根據寬度大小選擇要顯示的資料數量
+const getDisplayDates = (currentLayout) => {
+  if (currentLayout === LAYOUT.MOBILE) {
+    return dates.slice(0, 3);  // 顯示3筆資料
+  } else if (currentLayout === LAYOUT.TABLET) {
+    return dates.slice(0, 7);  // 顯示7筆資料
+  } else {
+    return dates.slice(0, 14); // 顯示14筆資料
+  }
+};
+
 
 export default MoonTable;

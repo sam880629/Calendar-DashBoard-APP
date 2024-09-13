@@ -2,7 +2,7 @@
 // 篩選器按鈕
 const FilterButton = () =>{
   return (
-    <div className=" cursor-pointer">
+    <div className="w-12 h-12 mr-4 items-center justify-center cursor-pointer hidden xl:flex">
         <svg
             width="20"
             height="21"
