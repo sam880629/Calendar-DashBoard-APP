@@ -1,13 +1,7 @@
-import moment from 'moment';
 
-const MoonItem = ({ dateStr }) => {
-  const isHoliday = isWeekend(dateStr); // 假日判斷
-  const isToday = moment(dateStr).isSame('2024.5.20', 'day'); // 判斷是否是今天
+const MoonItem = ({ dateState }) => {
 
-  const week = moment(dateStr).format('ddd'); // 星期
-  const day = moment(dateStr).format('DD'); // 日
-  const mon = moment(dateStr).format('MMM'); // 月
-
+  const {isHoliday, isToday,week,day,mon} = dateState
   // class 樣式設定
   let containerClasses = `flex-1 border-[#E1E1E1] border-l border-b border-r   flex flex-col items-center justify-center ${
     isHoliday ? 'bg-[#FFFFF0]' : 'bg-white'
@@ -34,10 +28,5 @@ const MoonItem = ({ dateStr }) => {
   );
 };
 
-// 判斷是否是假日
-const isWeekend = (dateStr) => {
-  const day = moment(dateStr).day();
-  return day === 0 || day === 6; // 星期日或星期六
-};
 
 export default MoonItem;

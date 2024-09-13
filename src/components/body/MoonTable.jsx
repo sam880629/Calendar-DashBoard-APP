@@ -1,129 +1,114 @@
-import ButtonGroup from "../btn/ButtonGroup";
-import FilterButton from "../btn/FilterButton";
-import MoonItem from "./components/MoonItem";
+import { Fragment } from "react";
+import MoonRow from "./MoonRow";
+import RoomTypeRow from "./RoomTypeRow";
+import RoomRow from "./RoomRow";
 
-const Dates = [
-  { week: "Sat", day: 18, month: "May" },
-  { week: "Sun", day: 19, month: "May" },
-  { week: "Mon", day: 20, month: "May" },
-  { week: "Tue", day: 21, month: "May" },
-  { week: "Wed", day: 22, month: "May" },
-  { week: "Thu", day: 23, month: "May" },
-  { week: "Fri", day: 24, month: "May" },
-  { week: "Sat", day: 25, month: "May" },
-  { week: "Sun", day: 26, month: "May" },
-  { week: "Mon", day: 27, month: "May" },
-  { week: "Tue", day: 28, month: "May" },
-  { week: "Wed", day: 29, month: "May" },
-  { week: "Thu", day: 30, month: "May" },
-  { week: "Fri", day: 31, month: "May" },
-];
-const DD = {
-  2024: {
-    May: {
-      18: {
-        rooms: {
-          ECD: {
-            Speed: {
-              102: {
-                status: "occupied",
-                booked_by: {
-                  name: "Trisha Hung",
-                  reservation_id: "Cert#563212",
-                  contact: "0999-999-999",
-                },
-              },
-              104: {
-                status: "available",
-                booked_by: null,
-              },
-            },
-            Discovery: {
-              202: {
-                status: "occupied",
-                booked_by: {
-                  name: "James Chen",
-                  reservation_id: "Cert#781233",
-                  contact: "0922-222-222",
-                },
-              },
-              204: {
-                status: "clean",
-                booked_by: null,
-              },
+const roomData = [
+  {
+    floor: "ECD",
+    icon_path:
+      '<svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 5.78V3C19 1.35 17.65 0 16 0H12C11.23 0 10.53 0.3 10 0.78C9.47 0.3 8.77 0 8 0H4C2.35 0 1 1.35 1 3V5.78C0.39 6.33 0 7.12 0 8V14H2V12H18V14H20V8C20 7.12 19.61 6.33 19 5.78ZM12 2H16C16.55 2 17 2.45 17 3V5H11V3C11 2.45 11.45 2 12 2ZM3 3C3 2.45 3.45 2 4 2H8C8.55 2 9 2.45 9 3V5H3V3ZM2 10V8C2 7.45 2.45 7 3 7H17C17.55 7 18 7.45 18 8V10H2Z" fill="#686868"/></svg>',
+    rooms: [
+      {
+        name: "Speed",
+        status: "locked",
+        number: 102,
+        locked: false,
+        bookings: [
+          {
+            startDate: "2024-05-18",
+            endDate: "2024-05-19",
+            count: 2,
+            occupied: true,
+            guest: {
+              name: "Trista, Hung",
+              phone: "0970412412",
+              reservationId: "Conf.#1022110",
             },
           },
-          STD: {
-            "Racing - Beyond": {
-              216: {
-                status: "occupied",
-                booked_by: {
-                  name: "Lisa Chen",
-                  reservation_id: "Cert#991032",
-                  contact: "0955-555-555",
-                },
-              },
-              218: {
-                status: "available",
-                booked_by: null,
-              },
-            },
-            "Racing - Suite": {
-              316: {
-                status: "occupied",
-                booked_by: {
-                  name: "Eric Yang",
-                  reservation_id: "Cert#912034",
-                  contact: "0933-333-333",
-                },
-              },
-              318: {
-                status: "clean",
-                booked_by: null,
-              },
-              320: {
-                status: "occupied",
-                booked_by: {
-                  name: "Anna Wong",
-                  reservation_id: "Cert#332187",
-                  contact: "0911-111-111",
-                },
-              },
+        ],
+      },
+      {
+        name: "Discovery",
+        number: 202,
+        status: "occupied",
+        locked: false,
+        bookings: [
+          {
+            startDate: "2024-05-18",
+            endDate: "2024-05-19",
+            count: 5,
+            occupied: false,
+            guest: {
+              name: "Trista, Hung",
+              phone: "0970412412",
+              reservationId: "Conf.#1022110",
             },
           },
+        ],
+      },
+    ],
+  },
+  {
+    floor: "STD",
+    icon_path:
+      '<svg width="35" height="25" viewBox="0 0 35 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 10.638V8.3C14.5 6.76 13.6 5.5 12.5 5.5H7.5C6.4 5.5 5.5 6.76 5.5 8.3V10.638C4.62 11.128 4 12.318 4 13.718V19.5H5.5V17.4H14.5V19.5H16V13.718C16 12.318 15.38 11.128 14.5 10.638ZM13 7.6V10.4H7V7.6H13ZM5.5 13.718C5.5 13.046 5.89 12.5 6.37 12.5H13.64C14.12 12.5 14.51 13.046 14.51 13.718V15.3H5.51V13.718H5.5Z" fill="#686868"/><path d="M29.5 10.638V8.3C29.5 6.76 28.6 5.5 27.5 5.5H22.5C21.4 5.5 20.5 6.76 20.5 8.3V10.638C19.62 11.128 19 12.318 19 13.718V19.5H20.5V17.4H29.5V19.5H31V13.718C31 12.318 30.38 11.128 29.5 10.638ZM28 7.6V10.4H22V7.6H28ZM20.5 13.718C20.5 13.046 20.89 12.5 21.37 12.5H28.64C29.12 12.5 29.51 13.046 29.51 13.718V15.3H20.51V13.718H20.5Z" fill="#686868"/></svg>',
+    rooms: [
+      {
+        name: "Racing - Beyond",
+        number: 216,
+        status: "available",
+        locked: false,
+        bookings: {
+          "2024-5-20": {
+            count: 5,
+            occupied: true,
+            guest: {
+              name: "Trista, Hung",
+              phone: "0970412412",
+              reservationId: "Conf.#1022110",
+            },
+          },
+          // 其他日期
         },
       },
-      19: {
-        // 類似上面的資料結構，隨機生成其他天的資料
-      },
-      20: {
-        // 類似上面的資料結構，隨機生成其他天的資料
-      },
-      // 持續到31日
-    },
+      // 其他房間
+    ],
   },
-};
+];
+
+const dates = [
+  "2024-5-18",
+  "2024-5-19",
+  "2024-5-20",
+  "2024-5-21",
+  "2024-5-22",
+  "2024-5-23",
+  "2024-5-24",
+  "2024-5-25",
+  "2024-5-26",
+  "2024-5-27",
+  "2024-5-28",
+  "2024-5-29",
+  "2024-5-30",
+  "2024-5-31",
+];
 
 const MoonTable = () => {
-  const buttons = [{ text: "room" }, { text: "floor" }];
-  const FilterStyle = `w-40 mb:w-60  bg-white flex items-center border-[#E1E1E1] border-b`;
-
   return (
-    <div
-      className="text-center w-full grid gap-4 
-  grid-cols-[160px_1fr] sm:grid-cols-[160px_1fr] md:grid-cols-[240px_1fr] lg:grid-cols-[352px_1fr]"
-    >
-      <div className={`flex gap-4 ${FilterStyle}`}>
-        <ButtonGroup buttons={buttons} />
-        <FilterButton />
-      </div>
-      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-7 lg:grid-cols-14  grid-flow-col">
-        {Dates.map((Date, index) => (
-          <MoonItem key={index} Date={Date} />
-        ))}
-      </div>
-     
-    </div>
+    <>
+      {/* {按鈕/日期} */}
+      <MoonRow dates={dates} />
+
+      {roomData.map((floors, index) => (
+        <Fragment key={index}>
+          {/* 房型 */}
+          <RoomTypeRow floors={floors} dates={dates} />
+          {/* 房間名稱和訂單 */}
+          <RoomRow rooms={floors.rooms} dates={dates} />
+        </Fragment>
+      ))}
+    </>
   );
 };
 
