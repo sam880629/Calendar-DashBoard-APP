@@ -6,7 +6,7 @@ const Button = ({ text, onClick, isActive  })=> {
     return (
         <button
         className={`  flex-1 w-auto h-12 border-r border-stroke px-4 py-2 font-medium  last-of-type:border-r-0 text-sm 
-          ${isActive ? "bg-[#787878] text-white" : "bg-white text-[#787878] "}`}
+          ${isActive ? "bg-[#787878] text-white " : " bg-white text-[#787878] "}`}
         onClick={onClick}
       >
         <span className="mr-2 hidden xl:inline-block">By</span> 
@@ -25,9 +25,9 @@ const ButtonGroup =()=> {
 
     return (
      
-        <div className="pl-6 w-80 mb:p-4">
-         
-            <div className="flex  overflow-hidden rounded-lg border box-border">
+        <div className="pl-6 w-80 md:pr-4 ">
+
+            <div className="hidden md:flex  overflow-hidden rounded-lg border box-border">
               {buttons.map((button, index) => (
                 <Button
                   key={index}
@@ -36,6 +36,9 @@ const ButtonGroup =()=> {
                   onClick={()=>handledOpen(button.text)}
                 />
               ))}
+            </div>
+            <div className="flex md:hidden  justify-center">
+                <p className="font-bold">{open} NO.</p> 
             </div>
         </div>
      
