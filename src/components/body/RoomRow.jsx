@@ -1,6 +1,7 @@
 import RoomNumber from "./components/RoomNumber";
 import RoomBooking from "./components/RoomBooking";
 import moment from "moment";
+
 const RoomRow = ({ rooms, dates }) => {
   return rooms.map((room, roomIndex) => (
     <div key={roomIndex} className="flex w-full">
