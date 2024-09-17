@@ -1,13 +1,13 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      gridTemplateColumns: {
-        // Simple 16 column grid
-        14: "repeat(14, minmax(0, 1fr))",
-
-      },
+    screens: {
+      // tablet
+      'md': '768px',
+      // desktop
+      'xl': '1440px',
     },
+
   },
   plugins: [],
 };

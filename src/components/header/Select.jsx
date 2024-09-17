@@ -1,7 +1,7 @@
 // 下拉選單組件
 const Select = ({ title, children }) => {
     return (
-        <div className="hidden sm:flex  gap-2 justify-center items-center cursor-pointer">
+        <div className="hidden xl:flex  gap-2 justify-center items-center cursor-pointer">
             {children}
             <p className="">
                 {title}

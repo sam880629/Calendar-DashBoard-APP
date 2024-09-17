@@ -11,12 +11,12 @@ const MoonItem = ({ dateState }) => {
     isHoliday ? 'text-[#FF6E6E]' : 'text-[#4B4B4B]'
   }`;
   
-  let dayClasses = 'text-[#1E1E1E] font-bold text-lg';
+  let dayClasses = 'text-[#1E1E1E] font-bold ';
   
   // 今天的樣式覆蓋
   if (isToday) {
     containerClasses = `flex-1 bg-[#EDF5FF] border-[#4B91FF] border-t-4 flex flex-col items-center justify-center`;
-    dayClasses = 'text-[#1994FC] font-bold text-lg';
+    dayClasses = 'text-[#1994FC] font-bold ';
   }
 
   return (

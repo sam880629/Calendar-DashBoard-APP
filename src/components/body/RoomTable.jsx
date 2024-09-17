@@ -1,5 +1,3 @@
-
-
 const RoomTable = ({status,number}) =>{
     // 定義不同狀態的背景顏色
     const statusColors = {

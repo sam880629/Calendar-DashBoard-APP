@@ -16,7 +16,7 @@ const PoolBox = () => {
             <div className='bg-[#FAFAFA] border border-[#E1E1E1]  rounded-lg h-[90%] relative py-4 px-8'>
                 <div>
                     <div className='flex items-center'>
-                        <Timer seconds={10}/>
+                        <Timer seconds={600}/>
                         <ChangeButton  />
                     </div>
                 </div>
