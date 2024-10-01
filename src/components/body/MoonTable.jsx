@@ -3,7 +3,9 @@ import MoonRow from "./MoonRow";
 import RoomTypeRow from "./RoomTypeRow";
 import RoomRow from "./RoomRow";
 import { useDispatch, useSelector } from 'react-redux';
-import { setRoomData, setDates, setCurrentLayout } from '../../store/roomSlice';
+import { setRoomData, setDates } from '../../store/roomSlice';
+import { setDaysToShow } from '../../store/calendarSlice';
+import moment from "moment";
 
 const LAYOUT = {
   MOBILE: 'mobile',
@@ -18,21 +20,23 @@ const MAX_TABLET_WIDTH = 1440
 const MoonTable = () => {
   // store
   const dispatch = useDispatch();
-  const { roomData, dates, currentLayout } = useSelector((state) => state.room);
+  const { roomData} = useSelector((state) => state.room);
 
-  const displayDates = getDisplayDates(currentLayout, dates)
-
+  // 月曆
+  const { CalendarDate, startDay, daysToShow } = useSelector((state) => state.Calendar);
+  const displayDates = getDisplayDates(CalendarDate, startDay, daysToShow);
+  console.log(CalendarDate);
+  
   useEffect(() => {
-
     // 根據寬度大小設定裝置
     const handleWindowWidth = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth < MAX_MOBILE_WIDTH) {
-        dispatch(setCurrentLayout('mobile'));
+        dispatch(setDaysToShow(3)); // 移動裝置顯示3天
       } else if (windowWidth >= MAX_MOBILE_WIDTH && windowWidth < MAX_TABLET_WIDTH) {
-        dispatch(setCurrentLayout('tablet'));
+        dispatch(setDaysToShow(7)); // 平板裝置顯示7天
       } else {
-        dispatch(setCurrentLayout('desktop'));
+        dispatch(setDaysToShow(14)); // 桌面裝置顯示14天
       }
     };
 
@@ -60,14 +64,10 @@ const MoonTable = () => {
 };
 
 // 根據寬度大小選擇要顯示的資料數量
-const getDisplayDates = (currentLayout, dates) => {
-  if (currentLayout === LAYOUT.MOBILE) {
-    return dates.slice(0, 3);  // 顯示3筆資料
-  } else if (currentLayout === LAYOUT.TABLET) {
-    return dates.slice(0, 7);  // 顯示7筆資料
-  } else {
-    return dates.slice(0, 14); // 顯示14筆資料
-  }
+const getDisplayDates = (CalendarDate, startDay, daysToShow) => {
+  console.log(startDay);
+  
+  return CalendarDate.slice(startDay, startDay + daysToShow);
 };
 
 export default MoonTable;

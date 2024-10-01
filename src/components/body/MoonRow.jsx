@@ -12,10 +12,15 @@ const MoonRow = ({ dates }) => {
         <ButtonGroup buttons={buttons} />
         <FilterButton />
       </div>
+    
+  
       {/* Date items */}
       <div className="flex-grow flex justify-between">
         {dates.map((date, index) => {
-          const dateState = dateClassHandler(date); 
+          // const dateState = date; 
+          const dateState = dateClassHandler(date.date); 
+         
+          
           return <DateItem key={index} dateState={dateState} />;
         })}
       </div>
@@ -30,20 +35,21 @@ const isWeekend = (date) => {
 
 // 處理日期樣式
 const dateClassHandler = (date) => {
+  const mmt = moment(date); // 用 moment 對象解析日期
   const isHoliday = isWeekend(date); // 假日判斷
-  const isToday = moment(date).isSame('2024-05-20', 'day');; // 是否是今天
-  const isBeforeToday = moment(date).isBefore('2024-05-20', 'day'); // 判斷是否是今天之前
-  const week = moment(date, "YYYY-M-D").format("ddd"); // 星期
-  const day = moment(date, "YYYY-M-D").format("DD"); // 日
-  const mon = moment(date, "YYYY-M-D").format("MMM"); // 月
+  const isToday = mmt.isSame(moment(), 'day'); // 判斷是否是今天
+  const isBeforeToday = mmt.isBefore(moment(), 'day'); // 判斷是否是今天之前
+  const weekDay = mmt.format("ddd"); // 星期幾（簡寫）
+  const monthName = mmt.format("MMM"); // 月份名稱（簡寫）
+  const dateDayName = mmt.format("DD"); // 日期
 
   return {
-    isHoliday,
-    isBeforeToday,
-    isToday,
-    week,
-    day,
-    mon,
+      isHoliday,
+      isBeforeToday,
+      isToday,
+      weekDay,
+      monthName,
+      dateDayName
   };
 };
 

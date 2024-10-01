@@ -1,29 +1,29 @@
 
 const MoonItem = ({ dateState }) => {
 
-  const {isHoliday, isToday,week,day,mon} = dateState
+  const { weekDay,dateDayName,monthName, isToday, isHoliday} = dateState
   // class 樣式設定
-  let containerClasses = `flex-1 border-[#E1E1E1] border-l border-b border-r   flex flex-col items-center justify-center ${
-    isHoliday ? 'bg-[#FFFFF0]' : 'bg-white'
+  let containerClasses = `flex-1 border-[#E1E1E1] border-l border-b border-r flex flex-col items-center justify-center ${
+    isHoliday ? 'bg-[#EDFFFF]' : 'bg-white'
   }`;
-  
-  const weekClasses = `text-sm font-semibold ${
-    isHoliday ? 'text-[#FF6E6E]' : 'text-[#4B4B4B]'
-  }`;
-  
-  let dayClasses = 'text-[#1E1E1E] font-bold ';
+
+  let weekClasses = `text-sm font-semibold text-[#4B4B4B]`;//week 樣式
+  let dayClasses = 'text-[#1E1E1E] font-bold text-xl';//day 樣式
+  let monthClasses = 'text-sm text-[#787878]';//month 樣式
   
   // 今天的樣式覆蓋
   if (isToday) {
-    containerClasses = `flex-1 bg-[#EDF5FF] border-[#4B91FF] border-t-4 flex flex-col items-center justify-center`;
-    dayClasses = 'text-[#1994FC] font-bold ';
+    containerClasses = `flex-1 bg-[#ff9900] border-[#f55300] border-t-4 flex flex-col items-center justify-center`;
+    dayClasses = 'text-white font-bold text-xl';
+    monthClasses = 'text-sm text-white'
+    weekClasses =`text-sm font-semibold text-white`;
   }
 
   return (
     <div className={containerClasses}>
-      <p className={weekClasses}>{week}</p>
-      <p className={dayClasses}>{day}</p>
-      <p className="text-sm text-[#787878] ">{mon}</p>
+      <p className={weekClasses}>{weekDay}</p>
+      <p className={dayClasses}>{dateDayName}</p>
+      <p className={monthClasses}>{monthName}</p>
     </div>
   );
 };
