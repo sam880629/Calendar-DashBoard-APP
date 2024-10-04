@@ -5,38 +5,33 @@ import RoomRow from "./RoomRow";
 import { useDispatch, useSelector } from 'react-redux';
 import { setRoomData, setDates } from '../../store/roomSlice';
 import { setDaysToShow } from '../../store/calendarSlice';
-import moment from "moment";
 
-const LAYOUT = {
-  MOBILE: 'mobile',
-  TABLET: 'tablet',
-  DESKTOP: 'desktop',
-}
+
 
 // 各裝置寬度
-const MAX_MOBILE_WIDTH = 768
-const MAX_TABLET_WIDTH = 1440
+const MAX_MOBILE_WIDTH = 768//手機寬度
+const MAX_TABLET_WIDTH = 1440//桌機寬度
 
 const MoonTable = () => {
   // store
   const dispatch = useDispatch();
   const { roomData} = useSelector((state) => state.room);
 
-  // 月曆
-  const { CalendarDate, startDay, daysToShow } = useSelector((state) => state.Calendar);
-  const displayDates = getDisplayDates(CalendarDate, startDay, daysToShow);
-  console.log(CalendarDate);
-  
+  // 月曆store
+  const {showData} = useSelector((state) => state.Calendar);
+   
+  const displayDates = showData;
+
   useEffect(() => {
     // 根據寬度大小設定裝置
     const handleWindowWidth = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth < MAX_MOBILE_WIDTH) {
-        dispatch(setDaysToShow(3)); // 移動裝置顯示3天
+        dispatch(setDaysToShow(3)); //手機顯示3筆
       } else if (windowWidth >= MAX_MOBILE_WIDTH && windowWidth < MAX_TABLET_WIDTH) {
-        dispatch(setDaysToShow(7)); // 平板裝置顯示7天
+        dispatch(setDaysToShow(7)); // 平板顯示7筆
       } else {
-        dispatch(setDaysToShow(14)); // 桌面裝置顯示14天
+        dispatch(setDaysToShow(14)); // 桌機顯示14筆
       }
     };
 
@@ -63,11 +58,5 @@ const MoonTable = () => {
   );
 };
 
-// 根據寬度大小選擇要顯示的資料數量
-const getDisplayDates = (CalendarDate, startDay, daysToShow) => {
-  console.log(startDay);
-  
-  return CalendarDate.slice(startDay, startDay + daysToShow);
-};
 
 export default MoonTable;
