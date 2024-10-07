@@ -10,7 +10,7 @@ const DatePickButton = ({day})=> {
 }
     return(
         <div onClick={handleLastMonthEvent} className="flex justify-center items-center gap-2 cursor-pointer bg-white w-full md:w-[90px] h-12 border border-[#E9E9E9] rounded">
-            <p>{day}</p>
+            <p className=' font-bold'>{day}</p>
         </div>
     )
 }

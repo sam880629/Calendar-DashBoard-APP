@@ -3,13 +3,15 @@ import RoomBooking from "./components/RoomBooking";
 import moment from "moment";
 
 const RoomRow = ({ rooms, dates }) => {
+
   return rooms.map((room, roomIndex) => (
     <div key={roomIndex} className="flex w-full">
+  
       {/* 房間名稱/號碼 */}
       <RoomNumber room={room} />
 
       {/* 日期網格 */}
-      <div className="flex-grow flex justify-between">
+      {/* <div className="flex-grow flex justify-between">
         {dates.map((date, dateIndex) => {
           const dateState = dateClassHandler(date);
           return (
@@ -21,7 +23,7 @@ const RoomRow = ({ rooms, dates }) => {
             />
           );
         })}
-      </div>
+      </div> */}
     </div>
   ));
 };

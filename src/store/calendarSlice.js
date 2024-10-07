@@ -26,27 +26,37 @@ const getDaysInYear = (year) => {
 
 // 取得要顯示的日期資料
 const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToShow, type) => {
-  // 取得當前月份的日期
 
+  // 取得當前月份的日期
   const monthData = calendarDate[currentMonth];
   let displayDates = monthData.slice(startDay, endDay);
 
   // 如果當月剩餘天數不足，從下個月補充
   if (displayDates.length < daysToShow) {
     const remainingDays = daysToShow - displayDates.length;
-
     // 下個月是12月的話，回到1月
-    const nextMonth =   type=='next' ? (currentMonth + 1) % 12 : currentMonth ;
-    const nextMonthDays = calendarDate[nextMonth].slice(0, remainingDays);
+    let nextMonth =  0;
+    let  nextMonthDays = {}
 
-    // 合併當前月份和下一個月份的天數
-    displayDates = [...displayDates, ...nextMonthDays];
+    if(type=='next'){
+      nextMonth = (currentMonth + 1) % 12
+      nextMonthDays = calendarDate[nextMonth].slice(0, remainingDays);
+      // 合併當前月份和下一個月份的天數
+      displayDates = [...displayDates, ...nextMonthDays];
+      currentMonth = nextMonth;  // 更新到下個月
+    }else if(type=='prev'){
+      nextMonth = currentMonth
+      nextMonthDays = calendarDate[nextMonth].slice(0, remainingDays);
+      // 合併當前月份和下一個月份的天數
+      displayDates = [...displayDates, ...nextMonthDays];
+    }
 
     // 更新 startDay 和 currentMonth
-    startDay = remainingDays;
-    currentMonth = nextMonth;  // 更新到下個月
+    startDay = remainingDays-daysToShow;
+ 
   } else {
-    //開始日期變成結束日期
+    //開始日期變成結束日期;
+   
     startDay == endDay;
   }
  
@@ -69,12 +79,11 @@ const CalendarSlice = createSlice({
   name: "Calendar",
   initialState,
   reducers: {
-    // 切換到下一組天數
+    // 切換到下一組日期
     nextDays(state) {
       state.startDay += state.daysToShow ;
-     
-      
-      // 如果 startDay 超過當前月份的天數，進入下一個月份
+    
+      // 如果 startDay 超過當前月份的天數，切到下一個月份
       if (state.startDay >= state.CalendarDate[state.currentMonth].length) {
 
         // 如果已經是12月，年份增加並回到1月
@@ -92,17 +101,15 @@ const CalendarSlice = createSlice({
         state.daysToShow,
         'next'
       );
-    
-    
       // 更新狀態
       state.showData = result.displayDates;
       state.startDay = result.startDay;
       state.currentMonth = result.currentMonth;
    
     },
-    // 切換到上一組天數
+    // 切換到上一組日期
     prevDays(state) {
-      // 減少 daysToShow，返回上一組日期
+     
       state.startDay -= state.daysToShow;
       // 如果 startDay 小於 0，進入上一個月份
       if (state.startDay < 0) {

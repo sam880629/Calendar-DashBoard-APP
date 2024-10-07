@@ -1,5 +1,4 @@
 import ButtonGroup from "../btn/ButtonGroup";
-import FilterButton from "../btn/FilterButton";
 import DateItem from "./components/DateItem";
 import moment from "moment";
 const buttons = [{ text: "room" }, { text: "floor" }];
@@ -10,17 +9,12 @@ const MoonRow = ({ dates }) => {
       {/* room / floor 按鈕 */}
       <div className=" py-4 flex gap-4 bg-white items-center border-[#E1E1E1] border-b w-[160px] md:w-[240px] xl:w-[352px]">
         <ButtonGroup buttons={buttons} />
-        <FilterButton />
       </div>
     
-  
       {/* Date items */}
       <div className="flex-grow flex justify-between">
         {dates.map((date, index) => {
-          // const dateState = date; 
           const dateState = dateClassHandler(date.date); 
-         
-          
           return <DateItem key={index} dateState={dateState} />;
         })}
       </div>

@@ -637,7 +637,6 @@ const initialState = {
         "2024-5-30",
         "2024-5-31",
     ],
-    currentLayout: 'desktop',
 };
 
 const roomSlice = createSlice({
@@ -645,7 +644,7 @@ const roomSlice = createSlice({
     initialState,
     reducers: {
         setCurrentLayout(state, action) {
-            state.currentLayout = action.payload;
+            // state.currentLayout = action.payload;
         },
     },
 });
