@@ -1,41 +1,60 @@
+import { useState } from 'react';
 import BookingCard from "./BookingCard";
+import {  Droppable ,Draggable   } from 'react-beautiful-dnd';
 
+// 回傳對應時間的資料
+const bookingHandler = (booking, hour) => {
+  const targetHour = booking.time.split(':')[0];
 
-const RoomBooking = ({ room, date, dateState }) => {
-  
-  const { isHoliday, isToday, isBeforeToday } = dateState
-  const { bookings } = room;
+  return hour==targetHour? booking:null
+};
 
-  const bookingList = getBookingForDate(bookings, date);
+const RoomBooking = ({ todoList, hour }) => {
+
+  const bookingList =todoList ? todoList : [];
 
   // class 樣式設定
-  let containerClasses = `flex-1 p-2 border  relative ${isHoliday ? 'bg-[#FFFFF0]' : 'bg-white'
-    }`;
+  let containerClasses = `flex-1 pt-1 pl-1 border relative bg-white `;
 
-  if (isToday) {
-    containerClasses = ` bg-[#EDF5FF] flex-1 p-2 border relative`;
-  } else if (isBeforeToday) {
-    containerClasses = ` bg-[#F0F0F0] flex-1 p-2 border relative`;
-  }
-
-  return (
-    <div className={containerClasses}>
-      {bookingList.length > 0 ? (
-        bookingList.map((booking, index) => (
-          <BookingCard key={index} booking={booking} />
-        ))
-      ) : (
-        <div className=""></div>
-      )}
-    </div>
+  // 篩選符合時間的預約
+  const filteredBookings = bookingList.filter(
+    (booking) => bookingHandler(booking, hour) !== null
   );
 
+  return (
+    <Droppable droppableId={`drop-${hour}`}>
+      {(provided) => (
+        <div
+          className={containerClasses}
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
+          {filteredBookings.length > 0 ? (
+            filteredBookings.map((booking, index) => (
+              <Draggable
+                key={booking.id}
+                draggableId={`booking-${booking.id}`} 
+                index={index}
+              >
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <BookingCard booking={booking} />
+                  </div>
+                )}
+              </Draggable>
+            ))
+          ) : (
+            <div className=""></div>
+          )}
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
+  );
 };
-
-// 有無對應的訂房資料
-const getBookingForDate = (bookings, date) => {
-    return bookings[date] || [];
-};
-
 
 export default RoomBooking;

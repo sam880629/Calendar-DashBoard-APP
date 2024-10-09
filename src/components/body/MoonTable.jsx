@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import MoonRow from "./MoonRow";
 import RoomTypeRow from "./RoomTypeRow";
-import RoomRow from "./RoomRow";
+import TimeRow from "./TimeRow";
 import { useDispatch, useSelector } from 'react-redux';
 import { setRoomData, setDates } from '../../store/roomSlice';
 import { setDaysToShow } from '../../store/calendarSlice';
@@ -18,6 +18,7 @@ const MoonTable = () => {
   const {showData} = useSelector((state) => state.Calendar);
    
   const displayDates = showData;
+
   
   useEffect(() => {
     // 根據寬度大小設定裝置
@@ -26,7 +27,7 @@ const MoonTable = () => {
       if (windowWidth < MAX_MOBILE_WIDTH) {
         dispatch(setDaysToShow(3)); //手機顯示3筆
       } else if (windowWidth >= MAX_MOBILE_WIDTH ) {
-        dispatch(setDaysToShow(7)); 
+        dispatch(setDaysToShow(7)); //其餘裝置7筆
       }
     };
 
@@ -46,7 +47,7 @@ const MoonTable = () => {
           {/* 房型 */}
           {/* <RoomTypeRow floors={floors} dates={displayDates} /> */}
           {/* 房間名稱和訂單 */}
-          <RoomRow rooms={floors.rooms} dates={displayDates} />
+          <TimeRow times={floors.times} dates={displayDates} />
         </Fragment>
       ))}
     </>
