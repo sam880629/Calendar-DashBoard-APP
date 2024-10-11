@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import BookingCard from "./BookingCard";
-import {  Droppable ,Draggable   } from 'react-beautiful-dnd';
+import { Droppable ,Draggable } from '@hello-pangea/dnd';
 
 // 回傳對應時間的資料
 const bookingHandler = (booking, hour) => {
@@ -9,10 +9,10 @@ const bookingHandler = (booking, hour) => {
   return hour==targetHour? booking:null
 };
 
-const RoomBooking = ({ todoList, hour }) => {
-
-  const bookingList =todoList ? todoList : [];
-
+const RoomBooking = ({ todoList = [], hour ,today}) => {
+  // console.log(today);
+  
+  const bookingList = todoList;
   // class 樣式設定
   let containerClasses = `flex-1 pt-1 pl-1 border relative bg-white `;
 
@@ -22,7 +22,7 @@ const RoomBooking = ({ todoList, hour }) => {
   );
 
   return (
-    <Droppable droppableId={`drop-${hour}`}>
+    <Droppable droppableId={`drop-${hour}-${today}`}>
       {(provided) => (
         <div
           className={containerClasses}
@@ -33,7 +33,7 @@ const RoomBooking = ({ todoList, hour }) => {
             filteredBookings.map((booking, index) => (
               <Draggable
                 key={booking.id}
-                draggableId={`booking-${booking.id}`} 
+                draggableId={`booking-${booking.id}`}
                 index={index}
               >
                 {(provided) => (

@@ -7,7 +7,7 @@ const getTodoList =(date)=>{
   const month =  mmt.format("MM");
   
   // 加入待辦事項
-  if (day == 10 && month == 10) {
+  if (day == 12 && month == 10) {
     return [
       {id:0, time: '20:30', title: 'Meeting' },
       {id:1, time: '20:30', title: 'Going home to walk the dog' },
@@ -15,12 +15,12 @@ const getTodoList =(date)=>{
     ];
   } else if (day == 15) {
     return [
-      { time: '09:30', title: 'Products Introduction Meeting' },
-      { time: '12:30', title: 'Client entertaining' },
-      { time: '02:00', title: 'Product design discussion' },
-      { time: '05:00', title: 'Product test and acceptance' },
-      { time: '06:30', title: 'Reporting' },
-      { time: '10:00', title: 'Going home to walk the dog' }
+      // { time: '09:30', title: 'Products Introduction Meeting' },
+      // { time: '12:30', title: 'Client entertaining' },
+      // { time: '02:00', title: 'Product design discussion' },
+      // { time: '05:00', title: 'Product test and acceptance' },
+      // { time: '06:30', title: 'Reporting' },
+      // { time: '10:00', title: 'Going home to walk the dog' }
     ];
   } else {
     return [];

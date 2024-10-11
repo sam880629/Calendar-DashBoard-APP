@@ -14,11 +14,13 @@ const MoonTable = () => {
   const dispatch = useDispatch();
   const { roomData} = useSelector((state) => state.room);
 
+
+
   // 月曆store
   const {showData} = useSelector((state) => state.Calendar);
    
   const displayDates = showData;
-
+  console.log(showData);
   
   useEffect(() => {
     // 根據寬度大小設定裝置
