@@ -4,29 +4,32 @@ import { DragDropContext, Droppable ,Draggable   } from '@hello-pangea/dnd';
 import { useState } from 'react';
 
 const TimeRow = ({ times, dates }) => {
-  const [bookingData, setBookingData] = useState(dates);
-  // 拖動結束的處理函數
+  const [bookingData, setBookingData] = useState(dates[2]);
   const onDragEnd = (result) => {
     const { destination, source } = result;
-
+    console.log(result);
+    
+    // 如果拖動到無效區域，直接返回
     if (!destination) return;
   
-    // 複製現有的 bookingData
-    const newBookingData = bookingData;
-    
-    console.log(bookingData);
-    
-    // 取得來源日期的 todoList
-    const [sourceTodoList ]= Array.from(newBookingData);
-
-    // 移除被拖動的項目
-    newBookingData.splice(destination.index,0 ,sourceTodoList);
-
-    // console.log(newBookingData);
-    
-
+    const sourceIndex = source.index;
+    const destinationIndex = destination.index;
+  
+    // 創建 bookingData 的副本，避免直接修改狀態
+    const newBookingData = Array.from(bookingData);
+  
+    // 取得並移除被拖動的項目
+    const [removed] = newBookingData.splice(sourceIndex, 1);
+  
+    // 在目標位置插入移動的項目
+    newBookingData.splice(destinationIndex, 0, removed);
+  
+   
     // 更新狀態
-    // setBookingData(newBookingData);
+    setBookingData(newBookingData);
+  
+    // 驗證結果
+    console.log(newBookingData);
   };
 
   return (

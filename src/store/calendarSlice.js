@@ -42,13 +42,15 @@ const getDaysInYear = (year) => {
       const date = mmt.date(day);
       monthDays.push({
         date: date.format("YYYY-MM-DD"),
-        todoList:getTodoList(date.format("YYYY-MM-DD"))
+        todoList:getTodoList(date.format("YYYY-MM-DD")),
+        day: date.format("DD")
       });
     }
 
     yearData[month] = monthDays;
   }
-
+  console.log(yearData);
+  
   return yearData;
 };
 

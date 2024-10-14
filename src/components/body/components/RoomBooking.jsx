@@ -22,7 +22,7 @@ const RoomBooking = ({ todoList = [], hour ,today}) => {
   );
 
   return (
-    <Droppable droppableId={`drop-${hour}-${today}`}>
+    <Droppable droppableId={`drop-${today}-${hour}`}>
       {(provided) => (
         <div
           className={containerClasses}

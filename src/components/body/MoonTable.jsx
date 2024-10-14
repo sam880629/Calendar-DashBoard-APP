@@ -20,7 +20,7 @@ const MoonTable = () => {
   const {showData} = useSelector((state) => state.Calendar);
    
   const displayDates = showData;
-  console.log(showData);
+
   
   useEffect(() => {
     // 根據寬度大小設定裝置
