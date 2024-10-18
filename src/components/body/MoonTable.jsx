@@ -12,14 +12,14 @@ const MAX_MOBILE_WIDTH = 768//手機寬度
 const MoonTable = () => {
   // store
   const dispatch = useDispatch();
-  const { roomData} = useSelector((state) => state.room);
-
-
+  const { roomData } = useSelector((state) => state.room);
 
   // 月曆store
-  const {showData} = useSelector((state) => state.Calendar);
+  const {showData, currentMonth} = useSelector((state) => state.Calendar);
    
   const displayDates = showData;
+
+  console.log(showData);
 
   
   useEffect(() => {
@@ -49,12 +49,11 @@ const MoonTable = () => {
           {/* 房型 */}
           {/* <RoomTypeRow floors={floors} dates={displayDates} /> */}
           {/* 房間名稱和訂單 */}
-          <TimeRow times={floors.times} dates={displayDates} />
+          <TimeRow times={floors.times} dates={displayDates} currentMonth={currentMonth} />
         </Fragment>
       ))}
     </>
   );
 };
-
 
 export default MoonTable;

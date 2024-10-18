@@ -7,7 +7,7 @@ const getTodoList =(date)=>{
   const month =  mmt.format("MM");
   
   // 加入待辦事項
-  if (day == 12 && month == 10) {
+  if (day == 20 && month == 10) {
     return [
       {id:0, time: '20:30', title: 'Meeting' },
       {id:1, time: '20:30', title: 'Going home to walk the dog' },
@@ -60,7 +60,8 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
   // 取得當前月份的日期
   const monthData = calendarDate[currentMonth];
   let displayDates = monthData.slice(startDay, endDay);
-
+  // console.log(monthData);
+  
   // 如果當月剩餘天數不足，從下個月補充
   if (displayDates.length < daysToShow) {
     const remainingDays = daysToShow - displayDates.length;
@@ -89,7 +90,8 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
    
     startDay == endDay;
   }
- 
+
+  
   return { displayDates, startDay, currentMonth };
 };
 
@@ -103,6 +105,7 @@ const initialState = {
   startDay: 0, // 目前顯示的開始天數
   daysToShow: 7, // 要顯示的天數
   showData: [],
+
 };
 
 const CalendarSlice = createSlice({
@@ -190,6 +193,7 @@ const CalendarSlice = createSlice({
       // 更新狀態
       state.showData = result.displayDates;
       state.startDay = today
+      state.currentMonth = result.currentMonth ;
     },
     // 返回今日
     setToday(state, action){
@@ -205,11 +209,28 @@ const CalendarSlice = createSlice({
       // 更新狀態
       state.showData = result.displayDates;
       state.startDay = today
-    }
+      
+    },
+    setCalendarDate(state, action) {
+     const { currentMonth, newBookingData, target_date } = action.payload;
+
+        // 先獲取該月份的資料
+        const monthData = state.CalendarDate[currentMonth];
+
+        //更新
+        monthData.forEach(dayData => {
+          if (dayData.date === target_date) { 
+            dayData.todoList = Array.isArray(newBookingData) ? [...newBookingData] : []; // 更新 todoList
+          }
+        });
+
+    },
   },
 });
 
+
+
 // 匯出 action 和 reducer
-export const { nextDays, prevDays, setDaysToShow, setToday } =
+export const { nextDays, prevDays, setDaysToShow, setToday, setCalendarDate  } =
   CalendarSlice.actions;
 export default CalendarSlice.reducer;

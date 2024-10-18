@@ -1,21 +1,29 @@
 import HourTitle from "./components/HourTitle";
 import RoomBooking from "./components/RoomBooking";
-import { DragDropContext, Droppable ,Draggable   } from '@hello-pangea/dnd';
+import { DragDropContext   } from '@hello-pangea/dnd';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setCalendarDate } from '../../store/calendarSlice';
 
-const TimeRow = ({ times, dates }) => {
-  const [bookingData, setBookingData] = useState(dates[2]);
+const TimeRow = ({ times, dates, currentMonth }) => {
+  const dispatch = useDispatch();
+  
+  const [bookingData, setBookingData] = useState(dates[3].todoList);
+
   const onDragEnd = (result) => {
     const { destination, source } = result;
     console.log(result);
     
     // 如果拖動到無效區域，直接返回
     if (!destination) return;
-  
+   
     const sourceIndex = source.index;
     const destinationIndex = destination.index;
+    //目標日期
+    const parts = source.droppableId.split('-');
+    const target_date = parts.slice(1,4).join('-')
   
-    // 創建 bookingData 的副本，避免直接修改狀態
+
     const newBookingData = Array.from(bookingData);
   
     // 取得並移除被拖動的項目
@@ -27,7 +35,7 @@ const TimeRow = ({ times, dates }) => {
    
     // 更新狀態
     setBookingData(newBookingData);
-  
+    dispatch(setCalendarDate({newBookingData,currentMonth,target_date}));
     // 驗證結果
     console.log(newBookingData);
   };
@@ -38,7 +46,7 @@ const TimeRow = ({ times, dates }) => {
         <div key={roomIndex} className="flex w-full">
           {/* 時段標題 */}
           <HourTitle time={time} />
-
+          <div>{currentMonth}</div>
           {/* 日期網格 */}
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="flex-grow flex justify-between">
@@ -54,7 +62,6 @@ const TimeRow = ({ times, dates }) => {
           </DragDropContext>
         </div>
       ))
-    
   );
 };
 
