@@ -7,20 +7,20 @@ const getTodoList =(date)=>{
   const month =  mmt.format("MM");
   
   // 加入待辦事項
-  if (day == 20 && month == 10) {
+  if (day == 23 && month == 10) {
     return [
-      {id:0, time: '20:30', title: 'Meeting' },
-      {id:1, time: '20:30', title: 'Going home to walk the dog' },
-      {id:2, time: '18:00', title: 'Lunch' }
+      {id:0, time: '20:30', title: '1Meeting' },
+      {id:1, time: '21:30', title: '2sGoing home to walk the dog' },
+      {id:2, time: '18:00', title: '3Lunch' }
     ];
-  } else if (day == 15) {
+  } else if (day == 21&& month == 10) {
     return [
-      // { time: '09:30', title: 'Products Introduction Meeting' },
-      // { time: '12:30', title: 'Client entertaining' },
-      // { time: '02:00', title: 'Product design discussion' },
-      // { time: '05:00', title: 'Product test and acceptance' },
-      // { time: '06:30', title: 'Reporting' },
-      // { time: '10:00', title: 'Going home to walk the dog' }
+      { id:0, time: '20:30', title: '1roducts Introduction Meeting' },
+      { id:1, time: '20:30', title: '2lient entertaining' },
+      { id:2, time: '02:00', title: '3roduct design discussion' },
+      { id:3, time: '06:00', title: '4roduct test and acceptance' },
+      { id:4, time: '06:30', title: '5Reporting' },
+      { id:5, time: '10:00', title: '6Going home to walk the dog' }
     ];
   } else {
     return [];
@@ -49,7 +49,6 @@ const getDaysInYear = (year) => {
 
     yearData[month] = monthDays;
   }
-  console.log(yearData);
   
   return yearData;
 };
@@ -90,7 +89,7 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
    
     startDay == endDay;
   }
-
+  
   
   return { displayDates, startDay, currentMonth };
 };
@@ -211,9 +210,10 @@ const CalendarSlice = createSlice({
       state.startDay = today
       
     },
+    // 設定日曆資料
     setCalendarDate(state, action) {
      const { currentMonth, newBookingData, target_date } = action.payload;
-
+   
         // 先獲取該月份的資料
         const monthData = state.CalendarDate[currentMonth];
 

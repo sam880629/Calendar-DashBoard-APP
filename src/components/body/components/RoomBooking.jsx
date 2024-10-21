@@ -4,14 +4,16 @@ import { Droppable ,Draggable } from '@hello-pangea/dnd';
 
 // 回傳對應時間的資料
 const bookingHandler = (booking, hour) => {
+
+  
   const targetHour = booking.time.split(':')[0];
 
   return hour==targetHour? booking:null
 };
 
-const RoomBooking = ({ todoList = [], hour ,today}) => {
-  // console.log(today);
-  
+const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
+
+  // console.log(keyId);
   const bookingList = todoList;
   // class 樣式設定
   let containerClasses = `flex-1 pt-1 pl-1 border relative bg-white `;
@@ -22,7 +24,7 @@ const RoomBooking = ({ todoList = [], hour ,today}) => {
   );
 
   return (
-    <Droppable droppableId={`drop-${today}-${hour}`}>
+    <Droppable droppableId={`${keyId}-drop-${today}-${hour}`} >
       {(provided) => (
         <div
           className={containerClasses}
@@ -33,7 +35,7 @@ const RoomBooking = ({ todoList = [], hour ,today}) => {
             filteredBookings.map((booking, index) => (
               <Draggable
                 key={booking.id}
-                draggableId={`booking-${booking.id}`}
+                draggableId={`${keyId}-booking-${booking.id}`}
                 index={index}
               >
                 {(provided) => (
