@@ -15,12 +15,12 @@ const getTodoList =(date)=>{
     ];
   } else if (day == 21&& month == 10) {
     return [
-      { id:0, time: '20:30', title: '1roducts Introduction Meeting' },
-      { id:1, time: '20:30', title: '2lient entertaining' },
-      { id:2, time: '02:00', title: '3roduct design discussion' },
-      { id:3, time: '06:00', title: '4roduct test and acceptance' },
-      { id:4, time: '06:30', title: '5Reporting' },
-      { id:5, time: '10:00', title: '6Going home to walk the dog' }
+      { id:3, time: '20:30', title: '1roducts Introduction Meeting' },
+      { id:4, time: '20:30', title: '2lient entertaining' },
+      { id:5, time: '02:00', title: '3roduct design discussion' },
+      { id:6, time: '06:00', title: '4roduct test and acceptance' },
+      { id:7, time: '06:30', title: '5Reporting' },
+      { id:8, time: '10:00', title: '6Going home to walk the dog' }
     ];
   } else {
     return [];

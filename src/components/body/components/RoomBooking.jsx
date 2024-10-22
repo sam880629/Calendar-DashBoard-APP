@@ -5,7 +5,6 @@ import { Droppable ,Draggable } from '@hello-pangea/dnd';
 // 回傳對應時間的資料
 const bookingHandler = (booking, hour) => {
 
-  
   const targetHour = booking.time.split(':')[0];
 
   return hour==targetHour? booking:null
