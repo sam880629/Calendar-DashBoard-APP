@@ -3,10 +3,10 @@ import TemporaryCard from "./components/TemporaryCard"
 // 暫存區塊
 const TemporaryRow = ({ temporary }) => {
   return (
-    <Droppable droppableId={`tt-drop`} >
+    <Droppable droppableId={`tp-drop-0000-00-00-25`} direction="horizontal">
     {(provided) => (
       <div
-        className=' h-10  bg-orange-100 flex'
+        className=' h-10  bg-orange-100 flex '
         {...provided.droppableProps}
         ref={provided.innerRef}
        >
@@ -16,6 +16,7 @@ const TemporaryRow = ({ temporary }) => {
             key={booking.id}
             draggableId={`1-booking-${booking.id}`}
             index={index}
+           
           >
             {(provided) => (
               <div
@@ -23,13 +24,16 @@ const TemporaryRow = ({ temporary }) => {
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
               >
-                <TemporaryCard booking={booking} />
+                <TemporaryCard 
+                    booking={booking}  
+                    
+                />
               </div>
             )}
           </Draggable>
         ))
       ) : (
-        <div className=""></div>
+        <div className="flex justify-center items-center">{"暫存區"}</div>
       )}
         {provided.placeholder}
         </div>

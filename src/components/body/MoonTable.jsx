@@ -1,9 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import MoonRow from "./MoonRow";
-import RoomTypeRow from "./RoomTypeRow";
 import TimeRow from "./TimeRow";
 import { useDispatch, useSelector } from "react-redux";
-import { setRoomData, setDates } from "../../store/roomSlice";
 import { setDaysToShow, setCalendarDate } from "../../store/calendarSlice";
 import { DragDropContext } from "@hello-pangea/dnd";
 import TemporaryRow from "./temporaryRow";
@@ -18,115 +16,120 @@ const MoonTable = () => {
   const [temporary, setTemporary] = useState([]);
   // 月曆store
   const { showData, currentMonth } = useSelector((state) => state.Calendar);
-  // 確認暫存區的渲染邏輯
-  useEffect(() => {
-    console.log('暫存區資料:', temporary);
-  }, [temporary]);
+
   const displayDates = showData;
 
   //移動的變更
+  const updateCalendar = (newBookingData, currentMonth, targetDate) => {
+    dispatch(
+      setCalendarDate({
+        newBookingData,
+        currentMonth: currentMonth - 1,
+        target_date: targetDate,
+      })
+    );
+  };
+  
+  // DnD移動事件
   const onDragEnd = (result) => {
+
     const { destination, source, draggableId } = result;
-    console.log(result);
+   
     
-    // 如果拖動到無效區域，直接返回
+    // 移動到無效區域，直接返回
     if (!destination) return;
 
-    //初始資訊
+    // 提取初始資訊
     const sourceParts = source.droppableId.split("-");
     const sourceIndex = Number(draggableId.split("-")[2]);
-    const sourceDate = sourceParts.slice(2, 5).join("-"); // 原先的目標日期
-    const sourceColumnId = draggableId.split("-")[0]; // 來源欄位 ID
-    const sourceTime = sourceParts[5]; // 原來的時間
-    // 取得來源欄位的資料
+    const sourceDate = sourceParts.slice(2, 5).join("-");
+    const sourceColumnId = draggableId.split("-")[0];
+    const sourceTime = sourceParts[5];
     const sourceBookingData = Array.from(displayDates[sourceColumnId].todoList);
-    let removed = sourceBookingData.find(
-      (booking) => booking.id === sourceIndex
-    );
 
+    // 移動的目標
+    let removed = sourceBookingData.find((booking) => booking.id === sourceIndex);
+     //移除後新的資料陣列
     const newBookingData = sourceBookingData.filter(
       (booking) => booking.id !== sourceIndex
     );
-
-    if(destination.droppableId=='tt-drop'){
-      console.log('暫存區');
-      setTemporary([removed,...temporary]);
-      // 更新來源日期的狀態
-      dispatch(
-        setCalendarDate({
-          newBookingData: newBookingData,
-          currentMonth: sourceParts[3] - 1, // 月份
-          target_date: sourceDate,
-        })
-      );
-       // 更新顯示天數
-      handleWindowWidth();
-      return
+  
+    // 判斷是否移動到暫存區
+    if (destination.droppableId === "tp-drop-0000-00-00-25") {
+      if (source.droppableId === "tp-drop-0000-00-00-25")return
+      setTemporary([...temporary, removed]);
+      updateCalendar(newBookingData, sourceParts[3], sourceDate);
+      handleWindowWidth(true);
+      return;
     }
-
-    //改變資訊
-    const destinationIndex = destination.index;
+  
+    // 目標資訊
     const destinationParts = destination.droppableId.split("-");
-    const destinationDate = destinationParts.slice(2, 5).join("-"); // 要移動到的目標日期
-    const destTime = destinationParts[5]; // 目標時間
+    const destinationDate = destinationParts.slice(2, 5).join("-");
+    const destinationTime = destinationParts[5];
+    const destinationIndex = destination.index;
+  
+   
 
-    // 更改時間
-    if (sourceTime != destTime) {
-      removed = {
-        ...removed,
-        time: `${destTime}:00`,
-      };
-    }
-    // 更新來源日期的狀態
-    dispatch(
-      setCalendarDate({
-        newBookingData: newBookingData,
-        currentMonth: sourceParts[3] - 1, // 月份
-        target_date: sourceDate,
-      })
-    );
-    // 不同日期之間移動
-    if (sourceDate !== destinationDate) {
-      // 取得目標日期的資料
+    // 暫存區移動到行事曆
+    if (source.droppableId === "tp-drop-0000-00-00-25") {
+      removed = temporary.find((booking) => booking.id === sourceIndex);
+      
+      // 判斷是否需要更改時間
+      if (sourceTime !== destinationTime) {
+        removed = {
+          ...removed,
+          time: `${destinationTime}:00`,
+        };
+      }
+      const updatedTemporary = temporary.filter(
+        (booking) => booking.id !== sourceIndex
+      );
+      setTemporary(updatedTemporary);
+  
       const targetBookingData = Array.from(
         displayDates[destinationParts[0]].todoList
       );
-
-      // 將移除的項目插入目標日期的指定位置
       targetBookingData.splice(destinationIndex, 0, removed);
-
-      // 更新目標日期的狀態
-      dispatch(
-        setCalendarDate({
-          newBookingData: targetBookingData,
-          currentMonth: destinationParts[3] - 1,
-          target_date: destinationDate,
-        })
-      );
-    } else {
-      // 移除並重新插入項目
-      newBookingData.splice(destinationIndex, 0, removed);
-      // 更新狀態
-      dispatch(
-        setCalendarDate({
-          newBookingData,
-          currentMonth,
-          target_date: sourceDate,
-        })
-      );
+      updateCalendar(targetBookingData, destinationParts[3], destinationDate);
+      handleWindowWidth(true);
+      return;
     }
 
+    // 判斷是否需要更改時間
+    if (sourceTime !== destinationTime) {
+      removed = {
+        ...removed,
+        time: `${destinationTime}:00`,
+      };
+    }
+
+    updateCalendar(newBookingData, sourceParts[3], sourceDate);
+  
+    // 不同日期之間移動
+    if (sourceDate !== destinationDate) {
+      const targetBookingData = Array.from(
+        displayDates[destinationParts[0]].todoList
+      );
+      targetBookingData.splice(destinationIndex, 0, removed);
+      updateCalendar(targetBookingData, destinationParts[3], destinationDate);
+    } else {
+      // 在同一日期內移動
+      newBookingData.splice(destinationIndex, 0, removed);
+      updateCalendar(newBookingData, sourceParts[3], sourceDate);
+    }
+  
     // 更新顯示天數
-    handleWindowWidth();
+    handleWindowWidth(true);
   };
 
   // 根據寬度大小設定裝置
-  const handleWindowWidth = () => {
+  const handleWindowWidth = (init=false) => {
     const windowWidth = window.innerWidth;
     if (windowWidth < MAX_MOBILE_WIDTH) {
-      dispatch(setDaysToShow(3)); //手機顯示3筆
+      dispatch(setDaysToShow({daysToShow:3,init:init})); //手機顯示3筆
     } else if (windowWidth >= MAX_MOBILE_WIDTH) {
-      dispatch(setDaysToShow(7)); //其餘裝置7筆
+      dispatch(setDaysToShow({daysToShow:7,init:init})); //其餘裝置7筆
     }
   };
 
@@ -142,23 +145,20 @@ const MoonTable = () => {
     <>
       {/* {按鈕/日期} */}
       <MoonRow dates={displayDates} />
-      <DragDropContext onDragEnd={onDragEnd}>
-        {/* ˊ暫存區 */}
-        <TemporaryRow temporary={temporary}/>
-          {roomData.map((floors, index) => (
-            <Fragment key={index}>
-              {/* 房型 */}
-              {/* <RoomTypeRow floors={floors} dates={displayDates} /> */}
-              {/* 房間名稱和訂單 */}
-                <TimeRow
-                  times={floors.times}
-                  dates={displayDates}
-                  currentMonth={currentMonth}
-                />
-            </Fragment>
-          ))}
-          
-      </DragDropContext>
+        <DragDropContext onDragEnd={onDragEnd}>
+          {/* ˊ暫存區 */}
+          <TemporaryRow temporary={temporary}/>
+            {roomData.map((floors, index) => (
+              <Fragment key={index}>
+                  <TimeRow
+                    times={floors.times}
+                    dates={displayDates}
+                    currentMonth={currentMonth}
+                  />
+              </Fragment>
+            ))}
+            
+        </DragDropContext>
     </>
   );
 };

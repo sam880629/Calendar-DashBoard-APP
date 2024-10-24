@@ -7,8 +7,8 @@ const MoonRow = ({ dates }) => {
   return (
     <div className="flex w-full">
       {/* room / floor 按鈕 */}
-      <div className=" py-4 flex gap-4 bg-white items-center border-[#E1E1E1] border-b w-[160px] md:w-[240px] xl:w-[352px]">
-        <ButtonGroup buttons={buttons} />
+      <div className=" py-4 flex gap-4 bg-white items-center border-[#E1E1E1] border-b w-[60px] md:w-[140px] xl:w-[152px]">
+        {/* <ButtonGroup buttons={buttons} /> */}
       </div>
     
       {/* Date items */}

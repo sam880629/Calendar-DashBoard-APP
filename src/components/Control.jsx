@@ -1,11 +1,7 @@
-import DatePicKButton from "./btn/DatePickButton";
 import NextButton from "./btn/NextButton";
 import PreviousButton from "./btn/PreviousButton";
 import DayPickButton from "./btn/DayPickButton";
 import ToggleSwitch from "./btn/ToggleSwitch";
-import ResetButton from "./btn/ResetButton";
-import SaveButton from "./btn/SaveButton";
-import PoolBox from "./PoolBox";
 import { useSelector } from 'react-redux';
 
 
@@ -24,14 +20,6 @@ const Control = () => {
         <p className='mr-2'>unlock</p>
         <ToggleSwitch />
       </div>
-      {/* 可編輯狀態 */}
-      {editLocked &&
-        <>
-          <ResetButton />
-          <SaveButton />
-        </>
-      }
-      {editLocked && <PoolBox />}
     </div>
   );
 }

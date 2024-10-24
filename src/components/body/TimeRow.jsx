@@ -1,6 +1,5 @@
 import HourTitle from "./components/HourTitle";
 import RoomBooking from "./components/RoomBooking";
-import { Droppable, Draggable } from "@hello-pangea/dnd";
 
 const TimeRow = ({ times, dates }) => {
   return times.map((time, roomIndex) => (

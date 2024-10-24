@@ -59,8 +59,7 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
   // 取得當前月份的日期
   const monthData = calendarDate[currentMonth];
   let displayDates = monthData.slice(startDay, endDay);
-  // console.log(monthData);
-  
+    
   // 如果當月剩餘天數不足，從下個月補充
   if (displayDates.length < daysToShow) {
     const remainingDays = daysToShow - displayDates.length;
@@ -179,19 +178,21 @@ const CalendarSlice = createSlice({
     },
     // 設定顯示筆數
     setDaysToShow(state, action) {
-      state.daysToShow = action.payload;
-      const today = moment().date()-2;
+      const {daysToShow, init} =action.payload;
+      state.daysToShow = daysToShow;
+      
+      const startDay = init?state.startDay:moment().date()-2;
      
       const result = getDisplayDates(
         state.CalendarDate,
         state.currentMonth,
-        today,
-        (today+ state.daysToShow),
+        startDay,
+        (startDay+ state.daysToShow),
         state.daysToShow
       );
       // 更新狀態
       state.showData = result.displayDates;
-      state.startDay = today
+      state.startDay = startDay
       state.currentMonth = result.currentMonth ;
     },
     // 返回今日

@@ -10,13 +10,15 @@ const bookingHandler = (booking, hour) => {
   return hour==targetHour? booking:null
 };
 
+
+
 const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
 
   // console.log(keyId);
   const bookingList = todoList;
   // class 樣式設定
   let containerClasses = `flex-1 pt-1 pl-1 border relative bg-white `;
-
+  
   // 篩選符合時間的預約
   const filteredBookings = bookingList.filter(
     (booking) => bookingHandler(booking, hour) !== null
@@ -24,9 +26,9 @@ const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
 
   return (
     <Droppable droppableId={`${keyId}-drop-${today}-${hour}`} >
-      {(provided) => (
+      {(provided, snapshot) => (
         <div
-          className={containerClasses}
+          className={`${containerClasses} ${snapshot.isDraggingOver?"bg-gray-200":"bg-white" }`}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
@@ -43,7 +45,9 @@ const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    <BookingCard booking={booking} />
+                    <BookingCard 
+                    booking={booking} 
+                    />
                   </div>
                 )}
               </Draggable>
