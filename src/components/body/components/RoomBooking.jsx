@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import BookingCard from "./BookingCard";
 import { Droppable ,Draggable } from '@hello-pangea/dnd';
 
@@ -9,8 +8,6 @@ const bookingHandler = (booking, hour) => {
 
   return hour==targetHour? booking:null
 };
-
-
 
 const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
 
@@ -28,7 +25,7 @@ const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
     <Droppable droppableId={`${keyId}-drop-${today}-${hour}`} >
       {(provided, snapshot) => (
         <div
-          className={`${containerClasses} ${snapshot.isDraggingOver?"bg-gray-200":"bg-white" }`}
+          className={`${containerClasses} ${snapshot.isDraggingOver?"bg-sky-100":"bg-white" }`}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
@@ -47,6 +44,8 @@ const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
                   >
                     <BookingCard 
                     booking={booking} 
+                    keyId={keyId}
+                    today={today}
                     />
                   </div>
                 )}

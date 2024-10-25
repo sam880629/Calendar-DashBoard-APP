@@ -53,7 +53,7 @@ const MoonTable = () => {
     const newBookingData = sourceBookingData.filter(
       (booking) => booking.id !== sourceIndex
     );
-  
+    
     // 判斷是否移動到暫存區
     if (destination.droppableId === "tp-drop-0000-00-00-25") {
       if (source.droppableId === "tp-drop-0000-00-00-25")return

@@ -217,7 +217,8 @@ const CalendarSlice = createSlice({
    
         // 先獲取該月份的資料
         const monthData = state.CalendarDate[currentMonth];
-
+        
+        
         //更新
         monthData.forEach(dayData => {
           if (dayData.date === target_date) { 
