@@ -7,7 +7,7 @@ const getTodoList =(date)=>{
   const month =  mmt.format("MM");
   
   // 加入待辦事項
-  if (day == 24 && month == 10) {
+  if (day == 29 && month == 10) {
     return [
       {id:0, time: '20:30', title: '1Meeting' },
       {id:1, time: '21:30', title: '2sGoing home to walk the dog' },
@@ -59,14 +59,16 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
   // 取得當前月份的日期
   const monthData = calendarDate[currentMonth];
   let displayDates = monthData.slice(startDay, endDay);
+  
     
   // 如果當月剩餘天數不足，從下個月補充
   if (displayDates.length < daysToShow) {
     const remainingDays = daysToShow - displayDates.length;
     // 下個月是12月的話，回到1月
     let nextMonth =  0;
-    let  nextMonthDays = {}
-
+    let nextMonthDays = {}
+    
+    
     if(type=='next'){
       nextMonth = (currentMonth + 1) % 12
       nextMonthDays = calendarDate[nextMonth].slice(0, remainingDays);
@@ -75,6 +77,11 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
       currentMonth = nextMonth;  // 更新到下個月
     }else if(type=='prev'){
       nextMonth = currentMonth
+      nextMonthDays = calendarDate[nextMonth].slice(0, remainingDays);
+      // 合併當前月份和下一個月份的天數
+      displayDates = [...displayDates, ...nextMonthDays];
+    }else{
+      nextMonth = (currentMonth + 1) % 12
       nextMonthDays = calendarDate[nextMonth].slice(0, remainingDays);
       // 合併當前月份和下一個月份的天數
       displayDates = [...displayDates, ...nextMonthDays];
@@ -87,9 +94,8 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
     //開始日期變成結束日期;
    
     startDay == endDay;
-  }
-  
-  
+  } 
+
   return { displayDates, startDay, currentMonth };
 };
 

@@ -14,7 +14,11 @@ const BookingCard = ({ booking, keyId, today }) => {
   };
 
   const handleClickOutside = (event) => {
-    if (settingBoxRef.current && !settingBoxRef.current.contains(event.target)) {
+    if (
+      settingBoxRef.current &&
+      !settingBoxRef.current.contains(event.target) &&
+      !event.target.closest(".MuiDialog-root") 
+    ) {
       setShow(false);
     }
   };
