@@ -7,13 +7,13 @@ const getTodoList =(date)=>{
   const month =  mmt.format("MM");
   
   // 加入待辦事項
-  if (day == 29 && month == 10) {
+  if (day == 31 && month == 10) {
     return [
       {id:0, time: '20:30', title: '1Meeting' },
       {id:1, time: '21:30', title: '2sGoing home to walk the dog' },
       {id:2, time: '18:00', title: '3Lunch' }
     ];
-  } else if (day == 27&& month == 10) {
+  } else if (day == 3&& month == 11) {
     return [
       { id:3, time: '20:30', title: '1roducts Introduction Meeting' },
       { id:4, time: '20:30', title: '2lient entertaining' },
@@ -49,6 +49,7 @@ const getDaysInYear = (year) => {
 
     yearData[month] = monthDays;
   }
+  console.log(yearData);
   
   return yearData;
 };
@@ -68,7 +69,7 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
     let nextMonth =  0;
     let nextMonthDays = {}
     
-    
+
     if(type=='next'){
       nextMonth = (currentMonth + 1) % 12
       nextMonthDays = calendarDate[nextMonth].slice(0, remainingDays);

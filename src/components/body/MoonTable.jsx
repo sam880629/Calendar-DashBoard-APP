@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDaysToShow, setCalendarDate } from "../../store/calendarSlice";
 import { DragDropContext } from "@hello-pangea/dnd";
 import TemporaryRow from "./temporaryRow";
+import AddDialog from "../body/components/AddDialog";
+
+
 
 // 各裝置寬度
 const MAX_MOBILE_WIDTH = 768; //手機寬度
@@ -29,7 +32,12 @@ const MoonTable = () => {
       })
     );
   };
-  
+
+  const AddCalendar = (inputValue) =>{
+      console.log('新增',inputValue);
+      
+
+  }
   // DnD移動事件
   const onDragEnd = (result) => {
 
@@ -68,8 +76,6 @@ const MoonTable = () => {
     const destinationDate = destinationParts.slice(2, 5).join("-");
     const destinationTime = destinationParts[5];
     const destinationIndex = destination.index;
-  
-   
 
     // 暫存區移動到行事曆
     if (source.droppableId === "tp-drop-0000-00-00-25") {
@@ -157,8 +163,8 @@ const MoonTable = () => {
                   />
               </Fragment>
             ))}
-            
         </DragDropContext>
+        <AddDialog  handle={(inputValue)=>{AddCalendar(inputValue)}}/>
     </>
   );
 };
