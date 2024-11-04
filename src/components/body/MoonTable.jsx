@@ -4,7 +4,7 @@ import TimeRow from "./TimeRow";
 import { useDispatch, useSelector } from "react-redux";
 import { setDaysToShow, setCalendarDate, addCalendarDate } from "../../store/calendarSlice";
 import { DragDropContext } from "@hello-pangea/dnd";
-import TemporaryRow from "./temporaryRow";
+import TemporaryRow from "./TemporaryRow";
 import AddDialog from "../body/components/AddDialog";
 
 
