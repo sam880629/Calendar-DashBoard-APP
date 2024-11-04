@@ -5,6 +5,7 @@ module.exports = {
       // tablet
       'md': '768px',
       // desktop
+      'lg':'1024px',
       'xl': '1440px',
     },
 

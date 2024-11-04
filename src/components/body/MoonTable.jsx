@@ -7,8 +7,6 @@ import { DragDropContext } from "@hello-pangea/dnd";
 import TemporaryRow from "./TemporaryRow";
 import AddDialog from "../body/components/AddDialog";
 
-
-
 // 各裝置寬度
 const MAX_MOBILE_WIDTH = 768; //手機寬度
 

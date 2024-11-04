@@ -3,7 +3,7 @@ import RoomBooking from "./components/RoomBooking";
 
 const TimeRow = ({ times, dates }) => {
   return times.map((time, roomIndex) => (
-    <div key={roomIndex} className="flex w-full">
+    <div key={roomIndex} className="flex w-auto">
       {/* 時段標題 */}
       <HourTitle time={time} />
       {/* 日期網格 */}

@@ -48,7 +48,6 @@ const BookingCard = ({ booking, keyId, today }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [settingBoxShow]);
-  
   // 消息條樣式
   const action = (
     <Fragment>
@@ -64,8 +63,8 @@ const BookingCard = ({ booking, keyId, today }) => {
   );
   
   return (
-    <div className="w-40 border-l-4 rounded py-2 pl-1 mb-1 bg-[#1994FC] group flex relative"  title={title}>
-        <p className="text-white text-sm truncate max-w-40"
+    <div className="xl:w-40 lg:w-32 md:w-20 w-auto m-auto border-l-4 rounded py-2 pl-1 mb-1 bg-[#1994FC] group flex relative"  title={title}>
+        <p className="text-white text-sm truncate xl:w-40 md:w-32 w-20 "
         >{title}
         </p>
       <p
