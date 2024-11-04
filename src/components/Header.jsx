@@ -1,5 +1,5 @@
 import Hemburger from "./header/Hemburger";
-import Select from "./Header/Select";
+import Select from "./header/Select";
 
 
 // 渲染header
@@ -10,9 +10,7 @@ const HeaderRender= () =>{
             <div className="mr-auto cursor-pointer font-normal text-2xl">
                 Calendar DashBoard
             </div>
-           
             <Select />
-          
         </header>
     );
 }
