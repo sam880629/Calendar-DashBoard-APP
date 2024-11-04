@@ -8,4 +8,6 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
-Demo->https://calendar-dash-board-ci8i0apxf-sams-projects-5967d469.vercel.app/
+
+## Live Demo
+Live Demo ➡️<a href="https://calendar-dash-board-app.vercel.app/">Demo live</a>
