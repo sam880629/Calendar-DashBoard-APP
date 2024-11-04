@@ -4,11 +4,10 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useState} from "react";
+import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-
 
 const BasicTooltip = () => {
   return (
@@ -21,23 +20,20 @@ const BasicTooltip = () => {
 };
 
 export default function AlertDialog({ handler }) {
-  const [open, setOpen] = useState(false);
-  
-
+  const [dialogOpen, setDialogOpen] = useState(false);
+    
   const handleClickOpen = () => {
-    setOpen(true);
+    setDialogOpen(true);
   };
-
+  //關閉
   const handleClose = () => {
-    setOpen(false);
+    setDialogOpen(false);
   };
-
+  //確認
   const AgreeHandle = () => {
     handler();
-    setOpen(false);
+    setDialogOpen(false);
   };
-
-
 
   return (
     <div>
@@ -45,7 +41,7 @@ export default function AlertDialog({ handler }) {
         <BasicTooltip />
       </div>
       <Dialog
-        open={open}
+        open={dialogOpen}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -61,7 +57,6 @@ export default function AlertDialog({ handler }) {
           <Button onClick={handleClose}>取消</Button>
         </DialogActions>
       </Dialog>
-
     </div>
   );
 }

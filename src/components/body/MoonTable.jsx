@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import MoonRow from "./MoonRow";
 import TimeRow from "./TimeRow";
 import { useDispatch, useSelector } from "react-redux";
-import { setDaysToShow, setCalendarDate } from "../../store/calendarSlice";
+import { setDaysToShow, setCalendarDate, addCalendarDate } from "../../store/calendarSlice";
 import { DragDropContext } from "@hello-pangea/dnd";
 import TemporaryRow from "./temporaryRow";
 import AddDialog from "../body/components/AddDialog";
@@ -13,6 +13,7 @@ import AddDialog from "../body/components/AddDialog";
 const MAX_MOBILE_WIDTH = 768; //手機寬度
 
 const MoonTable = () => {
+  const [id, setId] = useState(9);
   // store
   const dispatch = useDispatch();
   const { roomData } = useSelector((state) => state.room);
@@ -33,11 +34,33 @@ const MoonTable = () => {
     );
   };
 
-  const AddCalendar = (inputValue) =>{
-      console.log('新增',inputValue);
-      
+  // 新增資料
+  const addCalendar = (newBookingData, currentMonth, targetDate) => {
+    dispatch(
+      addCalendarDate({
+        newBookingData,
+        currentMonth: currentMonth,
+        target_date: targetDate,
+      })
+    );
+  };
 
+  // 增加資料
+  const AddCalendar = (inputValue,timeValue) =>{
+    //定義資料  
+    const {$y,$M,$D,$H,$m} = timeValue;
+    const date = `${$y}-${$M+1}-${$D}`
+    const data =[{
+      "id": id,
+      "time": `${$H}:${$m}`,
+      "title": `${inputValue}`
+    }]
+    // 寫入資料並更新
+      setId((prevId) => prevId + 1);
+      addCalendar(data,Number($M) , date);
+      handleWindowWidth(true);
   }
+
   // DnD移動事件
   const onDragEnd = (result) => {
 
@@ -164,7 +187,7 @@ const MoonTable = () => {
               </Fragment>
             ))}
         </DragDropContext>
-        <AddDialog  handle={(inputValue)=>{AddCalendar(inputValue)}}/>
+        <AddDialog  handle={(inputValue,timeValue)=>{AddCalendar(inputValue,timeValue)}}/>
     </>
   );
 };

@@ -24,7 +24,6 @@ const Control = () => {
       <PreviousButton />
       <DayPickButton day="Today" />
       <NextButton />
-      
 
       <div className="ml-auto xl:flex items-center hidden">
         <p className="mr-2">unlock</p>

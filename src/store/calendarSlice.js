@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const getTodoList =(date)=>{
   const mmt = moment(date)
-  const day = mmt.format("DD");
+  const day = mmt.format("D");
   const month =  mmt.format("MM");
   
   // 加入待辦事項
-  if (day == 31 && month == 10) {
+  if (day == 6 && month == 11) {
     return [
       {id:0, time: '20:30', title: '1Meeting' },
       {id:1, time: '21:30', title: '2sGoing home to walk the dog' },
@@ -41,9 +41,9 @@ const getDaysInYear = (year) => {
     for (let day = 1; day <= daysInMonth; day++) {
       const date = mmt.date(day);
       monthDays.push({
-        date: date.format("YYYY-MM-DD"),
-        todoList:getTodoList(date.format("YYYY-MM-DD")),
-        day: date.format("DD")
+        date: date.format("YYYY-MM-D"),
+        todoList:getTodoList(date.format("YYYY-MM-D")),
+        day: date.format("D")
       });
     }
 
@@ -225,7 +225,6 @@ const CalendarSlice = createSlice({
         // 先獲取該月份的資料
         const monthData = state.CalendarDate[currentMonth];
         
-        
         //更新
         monthData.forEach(dayData => {
           if (dayData.date === target_date) { 
@@ -234,12 +233,28 @@ const CalendarSlice = createSlice({
         });
 
     },
+    // 新增資料
+    addCalendarDate(state, action) {
+      const { currentMonth, newBookingData, target_date } = action.payload;
+    
+         // 先獲取該月份的資料
+         const monthData = state.CalendarDate[currentMonth];
+
+         //新增
+         monthData.forEach(dayData => {
+           if (dayData.date === target_date) { 
+              // 新增
+             dayData.todoList = [ ...dayData.todoList ,...newBookingData] ; // 
+           }
+         });
+ 
+     },
   },
 });
 
 
 
 // 匯出 action 和 reducer
-export const { nextDays, prevDays, setDaysToShow, setToday, setCalendarDate  } =
+export const { nextDays, prevDays, setDaysToShow, setToday, setCalendarDate,addCalendarDate } =
   CalendarSlice.actions;
 export default CalendarSlice.reducer;

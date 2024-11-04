@@ -9,7 +9,6 @@ import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
 import dayjs from 'dayjs';
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
@@ -34,27 +33,39 @@ const BasicTooltip = () => {
   );
 };
 
-export default function AddDialog( {handle}) {
+export default function AddDialog({ handle }) {
   const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
   const [timeValue, setTimeValue] = useState(dayjs());
+  const [inputError, setInputError] = useState(false); 
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+    setInputError(event.target.value === "");
   };
 
   const handleClickOpen = () => {
+    // 重製參數
+    setTimeValue(dayjs())
+    setInputValue(""); 
+    setInputError(false); 
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setInputValue(""); // 清空輸入
+    setInputError(false); // 重置錯誤狀態
   };
 
   const AgreeHandle = () => {
-    console.log(inputValue,timeValue);
-    handle(inputValue);
+    if (inputValue === "") {
+      setInputError(true);
+      return;
+    }
+
     setOpen(false);
+    handle(inputValue, timeValue);
   };
 
   return (
@@ -62,45 +73,32 @@ export default function AddDialog( {handle}) {
       <div onClick={handleClickOpen}>
         <BasicTooltip />
       </div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"新增資料"}</DialogTitle>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>新增資料</DialogTitle>
         <DialogContent>
-          <Box
-            sx={{
-              height: 20,
-              backgroundColor: { white: "white" },
-            }}
-          />
+          <Box sx={{ height: 20, backgroundColor: "white" }} />
           <TextField
+            error={inputError}
+            helperText={inputError ? "cannot be blank" : ""}
             id="outlined-basic"
             label="Title"
             variant="outlined"
+            value={inputValue}
             onChange={handleInputChange}
           />
-          <Box
-            sx={{
-              height: 20,
-              backgroundColor: { white: "white" },
-            }}
-          />
+          <Box sx={{ height: 20, backgroundColor: "white" }} />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["DateTimePicker", "DateTimePicker"]}>
-              <DateTimePicker
-                label="Time"
-                defaultValue={dayjs()}
-                onChange={(newValue) => setTimeValue(newValue)}
-              />
-            </DemoContainer>
+            <DateTimePicker
+              label="Time"
+              value={timeValue}
+              onChange={(newValue) => setTimeValue(newValue || dayjs())} 
+            />
           </LocalizationProvider>
         </DialogContent>
-
         <DialogActions>
-          <Button onClick={AgreeHandle}>確定</Button>
+          <Button onClick={AgreeHandle} disabled={inputError || !inputValue}>
+            確定
+          </Button>
           <Button onClick={handleClose}>取消</Button>
         </DialogActions>
       </Dialog>

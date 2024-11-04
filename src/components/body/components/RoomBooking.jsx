@@ -11,7 +11,6 @@ const bookingHandler = (booking, hour) => {
 
 const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
 
-  // console.log(keyId);
   const bookingList = todoList;
   // class 樣式設定
   let containerClasses = `flex-1 pt-1 pl-1 border relative bg-white `;

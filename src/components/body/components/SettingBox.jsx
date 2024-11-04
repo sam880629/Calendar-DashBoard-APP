@@ -4,15 +4,16 @@ import Tooltip from "@mui/material/Tooltip";
 import { useDispatch, useSelector } from "react-redux";
 import { setDaysToShow, setCalendarDate } from "../../../store/calendarSlice";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import Input from "@mui/material/Input";
+import TextField from '@mui/material/TextField';
 import { useState } from "react";
 import AlertDialog from './AlertDialog';
 
 
 
-// 下拉選單組件
-export default function SettingBox({ booking, keyId, today }) {
+// 設定選單
+export default function SettingBox({ booking, keyId, today,closeCard  }) {
   const { title } = booking;
+  const [inputError, setInputError] = useState(false); 
   // store
   const dispatch = useDispatch();
   // 月曆store
@@ -34,12 +35,15 @@ export default function SettingBox({ booking, keyId, today }) {
         target_date: `${today}`,
       })
     );
-    dispatch(setDaysToShow({ daysToShow: 7, init: true })); //其餘裝置7筆
-  };
+    dispatch(setDaysToShow({ daysToShow: 7, init: true })); 
+};
 
   //更新handler
   const updateHandler = () => {
-    
+    if(inputValue==''){
+        setInputError(true)
+        return;
+    }
     const targetArray = showData[keyId].todoList;
     const newBookingData = [
         ...targetArray.filter((todo) => todo.id !== booking.id), 
@@ -53,23 +57,28 @@ export default function SettingBox({ booking, keyId, today }) {
           target_date: `${today}`,
         })
       );
-    dispatch(setDaysToShow({ daysToShow: 7, init: true })); //其餘裝置7筆
-    
+    dispatch(setDaysToShow({ daysToShow: 7, init: true }));
+    closeCard();
   };
 
   return (
     <div className="z-10 min-w-40 flex flex-col border rounded bg-slate-400 p-2 shadow-lg absolute top-full -right-1/2">
-      <Input value={inputValue} onChange={handleInputChange} /> 
+      <TextField
+        error={inputError} 
+        value={inputValue} 
+        onChange={handleInputChange} 
+        helperText={inputError? 'cannot be blank':''}
+        variant="standard"
+      /> 
       <div className=" ml-auto p-1 rounded cursor-pointer flex">
         {/* 更新 */}
         <div onClick={updateHandler}>
-          <Tooltip title="Checked">
+          <Tooltip title="update"  disabled={inputError || !inputValue}>
             <IconButton>
               <CheckCircleIcon />
             </IconButton>
           </Tooltip>
         </div>
-      
         <AlertDialog  handler={deleteHandler}/>
       </div>
     </div>
