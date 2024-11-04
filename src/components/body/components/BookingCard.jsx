@@ -48,6 +48,8 @@ const BookingCard = ({ booking, keyId, today }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [settingBoxShow]);
+  
+  // 消息條樣式
   const action = (
     <Fragment>
       <IconButton
@@ -60,9 +62,12 @@ const BookingCard = ({ booking, keyId, today }) => {
       </IconButton>
     </Fragment>
   );
+  
   return (
-    <div className="w-40 border-l-4 rounded py-2 pl-1 mb-1 bg-[#1994FC] group flex relative">
-      <p className="text-white text-sm truncate max-w-40">{title}</p>
+    <div className="w-40 border-l-4 rounded py-2 pl-1 mb-1 bg-[#1994FC] group flex relative"  title={title}>
+        <p className="text-white text-sm truncate max-w-40"
+        >{title}
+        </p>
       <p
         onClick={toggleSettingBox}
         className="hidden group-hover:flex ml-auto text-black mr-1 cursor-pointer "

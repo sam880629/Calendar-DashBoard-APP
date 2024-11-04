@@ -33,7 +33,7 @@ const TemporaryRow = ({ temporary }) => {
           </Draggable>
         ))
       ) : (
-        <div className="flex justify-center items-center">{"暫存區"}</div>
+        <div className="flex justify-center items-center font-bold text-sm pl-2" >{"temporary Box"}</div>
       )}
         {provided.placeholder}
         </div>

@@ -24,7 +24,7 @@ const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
     <Droppable droppableId={`${keyId}-drop-${today}-${hour}`} >
       {(provided, snapshot) => (
         <div
-          className={`${containerClasses} ${snapshot.isDraggingOver?"bg-sky-100":"bg-white" }`}
+          className={`${containerClasses} ${snapshot.isDraggingOver?"bg-gray-200":"bg-white" }`}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >

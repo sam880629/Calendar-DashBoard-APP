@@ -235,11 +235,11 @@ const CalendarSlice = createSlice({
     },
     // 新增資料
     addCalendarDate(state, action) {
-      const { currentMonth, newBookingData, target_date } = action.payload;
+        const { currentMonth, newBookingData, target_date } = action.payload;
     
          // 先獲取該月份的資料
-         const monthData = state.CalendarDate[currentMonth];
-
+        const monthData = state.CalendarDate[currentMonth];
+    
          //新增
          monthData.forEach(dayData => {
            if (dayData.date === target_date) { 
