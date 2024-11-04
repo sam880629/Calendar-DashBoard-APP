@@ -74,7 +74,7 @@ export default function AddDialog({ handle }) {
         <BasicTooltip />
       </div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>新增資料</DialogTitle>
+        <DialogTitle>Add New TodoList</DialogTitle>
         <DialogContent>
           <Box sx={{ height: 20, backgroundColor: "white" }} />
           <TextField
@@ -97,9 +97,9 @@ export default function AddDialog({ handle }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={AgreeHandle} disabled={inputError || !inputValue}>
-            確定
+            OK
           </Button>
-          <Button onClick={handleClose}>取消</Button>
+          <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </>

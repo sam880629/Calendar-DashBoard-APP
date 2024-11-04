@@ -21,7 +21,7 @@ const BasicTooltip = () => {
 
 export default function AlertDialog({ handler }) {
   const [dialogOpen, setDialogOpen] = useState(false);
-    
+
   const handleClickOpen = () => {
     setDialogOpen(true);
   };
@@ -46,15 +46,17 @@ export default function AlertDialog({ handler }) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"確定要刪除資料嗎?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+            {"Are you sure you want to delete the data?"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            刪除資料後資料將無法復原!!
+            After deleting the data, the data cannot be restored
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={AgreeHandle}>確定</Button>
-          <Button onClick={handleClose}>取消</Button>
+          <Button onClick={AgreeHandle}>OK</Button>
+          <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
     </div>
