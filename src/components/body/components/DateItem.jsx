@@ -22,7 +22,7 @@ const MoonItem = ({ dateState }) => {
   return (
     <div className={containerClasses}>
       <p className={weekClasses}>{weekDay}</p>
-      <p className={dayClasses}>{dateDayName}</p>
+      <p className={dayClasses}>10</p>
       <p className={monthClasses}>{monthName}</p>
     </div>
   );
