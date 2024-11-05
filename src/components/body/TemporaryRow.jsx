@@ -32,7 +32,7 @@ const TemporaryRow = ({ temporary }) => {
         <Droppable droppableId={`tp-drop-0000-00-00-25`} direction="horizontal">
         {(provided) => (
             <div
-            className={`h-10 w-full bg-orange-100 flex ${isSticky ? "fixed top-[72px] z-10" : ""}`}
+            className={`h-10 w-full bg-orange-100 flex ${isSticky ? "md:fixed top-[72px] z-10" : ""}`}
             {...provided.droppableProps}
             ref={provided.innerRef}
             >
