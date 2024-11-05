@@ -1,7 +1,9 @@
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
+import { useState } from 'react';
 
 
+// 切換按鈕樣式
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   
   width: 62,
@@ -59,5 +61,22 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
+const ToggleSwitch = () => {
+  // 設定 state 來追蹤主題狀態
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  
+  // 切換主題的處理函數
+  const handleThemeToggle = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark', !isDarkMode);
+  };
 
-export default MaterialUISwitch
+  return (
+    <MaterialUISwitch
+      checked={isDarkMode}
+      onChange={handleThemeToggle}
+    />
+  );
+};
+export default ToggleSwitch

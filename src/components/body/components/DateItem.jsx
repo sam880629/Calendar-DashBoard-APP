@@ -8,7 +8,7 @@ const isWeekend = (date) => {
 
 // 處理日期樣式
 const dateClassHandler = (date) => {
-  const mmt = moment(date, "YYYY-M-D"); // 用 moment 對象解析日期
+  const mmt = moment(date, "YYYY-M-D"); 
 
   if (!mmt.isValid()) {
     console.error("Invalid date format:", date);
@@ -32,7 +32,7 @@ const dateClassHandler = (date) => {
 };
 const MoonItem = ({ dateItem }) => {
   const dateState = dateClassHandler(dateItem.date);
-  console.log(dateState);
+
   
   const { weekDay,dateDayName,monthName, isToday, isHoliday} = dateState
   // class 樣式設定

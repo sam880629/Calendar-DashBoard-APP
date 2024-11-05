@@ -9,7 +9,7 @@ const DatePickButton = ({day})=> {
     dispatch(setToday())
 }
     return(
-        <div onClick={handleLastMonthEvent} className="flex justify-center items-center gap-2 cursor-pointer bg-white w-full md:w-[90px] h-12 border border-[#E9E9E9] rounded">
+        <div onClick={handleLastMonthEvent} className="flex  dark:bg-gray-700 dark:text-white justify-center items-center gap-2 cursor-pointer bg-white w-full md:w-[90px] h-12 border border-[#E9E9E9] rounded">
             <p className=' font-bold'>{day}</p>
         </div>
     )

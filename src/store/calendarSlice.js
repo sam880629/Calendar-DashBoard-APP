@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const getTodoList =(date)=>{
  
-  const day = moment(date).format("D");
-  const month =  moment(date).format("MM");
+  const day = moment(date, "YYYY-M-D").format("D");
+  const month =  moment(date, "YYYY-M-D").format("MM");
   const todayDate =  moment().date(); 
   const todayMonth =  moment().month() + 1;
 
