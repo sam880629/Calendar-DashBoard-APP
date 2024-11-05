@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef, Fragment } from "react";
-import ButtonGroup from "../btn/ButtonGroup";
 import DateItem from "./components/DateItem";
 import moment from "moment";
 
-const buttons = [{ text: "room" }, { text: "floor" }];
 
 // 判斷是否為週末
 const isWeekend = (date) => {
@@ -67,8 +65,8 @@ const MoonRow = ({ dates }) => {
         {/* Date items */}
         <div className="flex-grow flex justify-between">
           {dates.map((date, index) => {
-            const dateState = dateClassHandler(date.date);
-            return <DateItem key={index} dateState={dateState} />;
+          
+            return <DateItem key={index} dateItem={date} />;
           })}
         </div>
       </div>
