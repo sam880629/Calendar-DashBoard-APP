@@ -19,8 +19,7 @@ const dateClassHandler = (date) => {
   const isBeforeToday = mmt.isBefore(moment(), "day"); // 判斷是否是今天之前
   const weekDay = mmt.format("ddd"); // 星期幾（簡寫）
   const monthName = mmt.format("MMM"); // 月份名稱（簡寫）
-  const dateDayName = mmt.format("DD"); // 日期
-
+  const dateDayName = mmt.format("D"); // 日期
   return {
     isHoliday,
     isBeforeToday,

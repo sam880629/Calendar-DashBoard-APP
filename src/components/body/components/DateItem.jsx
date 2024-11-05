@@ -8,7 +8,7 @@ const MoonItem = ({ dateState }) => {
   }`;
 
   let weekClasses = `text-sm font-semibold text-[#4B4B4B]`;//week 樣式
-  let dayClasses = 'text-[#1E1E1E] font-bold text-xl';//day 樣式
+  let dayClasses = 'text-[#1E1E1E] font-bold md:text-xl textlg ';//day 樣式
   let monthClasses = 'text-sm text-[#787878]';//month 樣式
   
   // 今天的樣式覆蓋
