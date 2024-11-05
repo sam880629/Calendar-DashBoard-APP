@@ -61,9 +61,8 @@ const MoonRow = ({ dates }) => {
       <div
         className={`flex w-full ${isSticky ? "fixed top-0 z-10 bg-white" : ""}`}
       >
-        {/* room / floor 按鈕 */}
         <div className=" py-4 flex gap-4 bg-white items-center border-[#E1E1E1] border-b w-[60px] md:w-[140px] xl:w-[152px]">
-          {/* <ButtonGroup buttons={buttons} /> */}
+  
         </div>
 
         {/* Date items */}

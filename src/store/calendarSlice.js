@@ -2,25 +2,27 @@ import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
 
 const getTodoList =(date)=>{
-  const mmt = moment(date)
-  const day = mmt.format("D");
-  const month =  mmt.format("MM");
+ 
+  const day = moment(date).format("D");
+  const month =  moment(date).format("MM");
+  const todayDate =  moment().date(); 
+  const todayMonth =  moment().month() + 1;
   
   // 加入待辦事項
-  if (day == 6 && month == 11) {
+  if (day == todayDate && month == todayMonth) {
     return [
-      {id:0, time: '20:30', title: '1Meeting' },
-      {id:1, time: '21:30', title: '2sGoing home to walk the dog' },
-      {id:2, time: '18:00', title: '3Lunch' }
+      {id:0, time: '20:30', title: 'Meeting' },
+      {id:1, time: '21:30', title: 'Going home to walk the dog' },
+      {id:2, time: '18:00', title: 'Lunch' }
     ];
-  } else if (day == 3&& month == 11) {
+  } else if (day == todayDate+3 && month == todayMonth) {
     return [
-      { id:3, time: '20:30', title: '1roducts Introduction Meeting' },
-      { id:4, time: '20:30', title: '2lient entertaining' },
-      { id:5, time: '02:00', title: '3roduct design discussion' },
-      { id:6, time: '06:00', title: '4roduct test and acceptance' },
-      { id:7, time: '06:30', title: '5Reporting' },
-      { id:8, time: '10:00', title: '6Going home to walk the dog' }
+      { id:3, time: '20:30', title: 'roducts Introduction Meeting' },
+      { id:4, time: '20:30', title: 'lient entertaining' },
+      { id:5, time: '02:00', title: 'roduct design discussion' },
+      { id:6, time: '06:00', title: 'roduct test and acceptance' },
+      { id:7, time: '06:30', title: 'Reporting' },
+      { id:8, time: '10:00', title: 'Going home to walk the dog' }
     ];
   } else {
     return [];

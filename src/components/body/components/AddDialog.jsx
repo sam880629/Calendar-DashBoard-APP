@@ -91,7 +91,14 @@ export default function AddDialog({ handle }) {
             <DateTimePicker
               label="Time"
               value={timeValue}
-              onChange={(newValue) => setTimeValue(newValue || dayjs())} 
+              onChange={(newValue) => setTimeValue(newValue || dayjs())}
+              slotProps={{
+                textField: {
+                  InputProps: { 
+                    sx: { "& .MuiSvgIcon-root": { color: "#1994FC" } }
+                  }
+                }
+              }}
             />
           </LocalizationProvider>
         </DialogContent>
