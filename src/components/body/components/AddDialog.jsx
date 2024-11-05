@@ -12,7 +12,9 @@ import dayjs from 'dayjs';
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 const fabStyle = {
   position: "fixed",
   bottom: 16,
@@ -87,20 +89,27 @@ export default function AddDialog({ handle }) {
             onChange={handleInputChange}
           />
           <Box sx={{ height: 20, backgroundColor: "white" }} />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateTimePicker
-              label="Time"
-              value={timeValue}
-              onChange={(newValue) => setTimeValue(newValue || dayjs())}
-              slotProps={{
-                textField: {
-                  InputProps: { 
-                    sx: { "& .MuiSvgIcon-root": { color: "#1994FC" } }
+        
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DateTimePicker
+                label="Time"
+                viewRenderers={{
+                  hours: renderTimeViewClock,
+                  minutes: renderTimeViewClock,
+                }}
+                value={timeValue}
+                onChange={(newValue) => setTimeValue(newValue || dayjs())}
+                slotProps={{
+                  textField: {
+                    InputProps: { 
+                      sx: { "& .MuiSvgIcon-root": { color: "#1994FC" } }
+                    }
                   }
-                }
-              }}
-            />
-          </LocalizationProvider>
+                }}
+              
+              />
+            </LocalizationProvider>
+       
         </DialogContent>
         <DialogActions>
           <Button onClick={AgreeHandle} disabled={inputError || !inputValue}>
