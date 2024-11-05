@@ -8,13 +8,19 @@ const isWeekend = (date) => {
 
 // 處理日期樣式
 const dateClassHandler = (date) => {
-  const mmt = moment(date); // 用 moment 對象解析日期
+  const mmt = moment(date, "YYYY-M-D"); // 用 moment 對象解析日期
+
+  if (!mmt.isValid()) {
+    console.error("Invalid date format:", date);
+    return {};
+  }
+
   const isHoliday = isWeekend(date); // 假日判斷
   const isToday = mmt.isSame(moment(), "day"); // 判斷是否是今天
   const isBeforeToday = mmt.isBefore(moment(), "day"); // 判斷是否是今天之前
   const weekDay = mmt.format("ddd"); // 星期幾（簡寫）
   const monthName = mmt.format("MMM"); // 月份名稱（簡寫）
-  const dateDayName = mmt.format("DD"); // 日期
+  const dateDayName = mmt.format("D"); // 日期
   return {
     isHoliday,
     isBeforeToday,
