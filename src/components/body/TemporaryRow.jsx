@@ -32,7 +32,7 @@ const TemporaryRow = ({ temporary }) => {
         <Droppable droppableId={`tp-drop-0000-00-00-25`} direction="horizontal">
         {(provided) => (
             <div
-            className={`h-10 w-full bg-orange-100 flex ${isSticky ? "md:fixed top-[72px] z-10" : ""}`}
+            className={`h-10 w-full bg-orange-100 dark:bg-gray-800 flex ${isSticky ? "md:fixed top-[80px] z-10" : ""}`}
             {...provided.droppableProps}
             ref={provided.innerRef}
             >
@@ -55,7 +55,7 @@ const TemporaryRow = ({ temporary }) => {
                 </Draggable>
                 ))
             ) : (
-                <div className="flex justify-center items-center font-bold text-sm pl-2">
+                <div className="flex justify-center items-center font-bold text-sm pl-2 dark:text-gray-200">
                 {"temporary Box"}
                 </div>
             )}

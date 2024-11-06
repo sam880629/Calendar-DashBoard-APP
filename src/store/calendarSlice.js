@@ -11,9 +11,9 @@ const getTodoList =(date)=>{
   // 加入待辦事項
   if (day == todayDate && month == todayMonth) {
     return [
-      {id:0, time: '20:30', title: 'Meeting' },
-      {id:1, time: '21:30', title: 'Going home to walk the dog' },
-      {id:2, time: '18:00', title: 'Lunch' }
+      {id:0, time: '14:30', title: 'Meeting' },
+      {id:1, time: '19:30', title: 'Going home to walk the dog' },
+      {id:2, time: '12:30', title: 'Lunch' }
     ];
   } else if (day == todayDate+3 && month == todayMonth) {
     return [
@@ -51,7 +51,7 @@ const getDaysInYear = (year) => {
 
     yearData[month] = monthDays;
   }
-  // console.log(yearData);
+ 
   
   return yearData;
 };
@@ -63,6 +63,7 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
   const monthData = calendarDate[currentMonth];
   let displayDates = monthData.slice(startDay, endDay);
   
+    console.log(currentMonth);
     
   // 如果當月剩餘天數不足，從下個月補充
   if (displayDates.length < daysToShow) {
@@ -79,7 +80,8 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
       displayDates = [...displayDates, ...nextMonthDays];
       currentMonth = nextMonth;  // 更新到下個月
     }else if(type=='prev'){
-      nextMonth = currentMonth
+      nextMonth = currentMonth+1
+     
       nextMonthDays = calendarDate[nextMonth].slice(0, remainingDays);
       // 合併當前月份和下一個月份的天數
       displayDates = [...displayDates, ...nextMonthDays];

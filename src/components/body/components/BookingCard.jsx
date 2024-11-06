@@ -63,7 +63,7 @@ const BookingCard = ({ booking, keyId, today }) => {
   );
   
   return (
-    <div className="xl:w-40 lg:w-32 md:w-20 w-auto m-auto border-l-4 rounded py-2 pl-1 mb-1 bg-[#1994FC] group flex relative"  title={title}>
+    <div className="xl:w-40 lg:w-32 md:w-20 w-auto m-auto border-l-8 border-l-blue-700 dark:border-gray-100  rounded py-2 pl-1 mb-1 bg-[#1994FC] group flex relative"  title={title}>
         <p className="text-white text-sm truncate xl:w-40 md:w-32 w-20 "
         >{title}
         </p>

@@ -13,7 +13,7 @@ const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
 
   const bookingList = todoList;
   // class 樣式設定
-  let containerClasses = `flex-1 pt-1 pl-1 border relative bg-white `;
+  let containerClasses = `flex-1 pt-1 pl-1 border-r  border-b relative bg-white  dark:bg-gray-700 dark:border-gray-800`;
   
   // 篩選符合時間的預約
   const filteredBookings = bookingList.filter(
