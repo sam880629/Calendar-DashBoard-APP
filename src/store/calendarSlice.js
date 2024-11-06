@@ -9,24 +9,40 @@ const getTodoList =(date)=>{
   const todayMonth =  moment().month() + 1;
 
   // 加入待辦事項
-  if (day == todayDate && month == todayMonth) {
-    return [
-      {id:0, time: '14:30', title: 'Meeting' },
-      {id:1, time: '19:30', title: 'Going home to walk the dog' },
-      {id:2, time: '12:30', title: 'Lunch' }
-    ];
-  } else if (day == todayDate+3 && month == todayMonth) {
-    return [
-      { id:3, time: '20:30', title: 'roducts Introduction Meeting' },
-      { id:4, time: '20:30', title: 'lient entertaining' },
-      { id:5, time: '02:00', title: 'roduct design discussion' },
-      { id:6, time: '06:00', title: 'roduct test and acceptance' },
-      { id:7, time: '06:30', title: 'Reporting' },
-      { id:8, time: '10:00', title: 'Going home to walk the dog' }
-    ];
-  } else {
-    return [];
-  }
+  const todos = {
+    [`${todayDate}_${todayMonth}`]: [
+      { id: 0, time: '14:30', title: 'Project Kickoff' },
+      { id: 1, time: '19:30', title: 'Team Meeting' },
+      { id: 2, time: '12:30', title: 'Client Call' }
+    ],
+    [`${todayDate + 2}_${todayMonth}`]: [
+      { id: 3, time: '20:30', title: 'Budget Review' },
+      { id: 4, time: '20:30', title: 'Customer Follow-up' },
+      { id: 5, time: '02:00', title: 'Workshop Preparation' },
+      { id: 6, time: '06:00', title: 'Strategy Planning' },
+      { id: 7, time: '06:30', title: 'Internal Audit' },
+      { id: 8, time: '10:00', title: 'Feedback Review' }
+    ],
+    [`${todayDate + 3}_${todayMonth}`]: [
+      { id: 9, time: '20:30', title: 'Product Demo' },
+      { id: 10, time: '12:30', title: 'Stakeholder Meeting' },
+      { id: 11, time: '02:00', title: 'Design Brainstorm' },
+      { id: 12, time: '06:00', title: 'Testing & QA' },
+      { id: 13, time: '04:30', title: 'Performance Review' },
+      { id: 14, time: '10:00', title: 'Marketing Sync' }
+    ],
+    [`${todayDate + 6}_${todayMonth}`]: [
+      { id: 15, time: '20:30', title: 'Data Analysis' },
+      { id: 16, time: '12:30', title: 'Sales Strategy Meeting' },
+      { id: 17, time: '02:00', title: 'New Hire Orientation' },
+      { id: 18, time: '06:00', title: 'Inventory Check' },
+      { id: 19, time: '04:30', title: 'Weekly Reporting' },
+      { id: 20, time: '10:00', title: 'Quarterly Planning' }
+    ]
+  };
+
+  // 根據傳入的日期查詢待辦事項
+  return todos[`${day}_${month}`] || [];
 
 }
 
