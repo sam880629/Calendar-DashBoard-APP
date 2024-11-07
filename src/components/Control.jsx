@@ -11,7 +11,7 @@ const Control = () => {
       <PreviousButton />
       <DayPickButton day="Today" />
       <NextButton />
-      <div className="ml-auto xl:flex items-center hidden">
+      <div className="ml-auto flex items-center ">
         <ToggleSwitch  />
       </div>
     </div>
