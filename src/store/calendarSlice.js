@@ -68,7 +68,6 @@ const getDaysInYear = (year) => {
     yearData[month] = monthDays;
   }
  
-  
   return yearData;
 };
 
@@ -78,8 +77,6 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
   // 取得當前月份的日期
   const monthData = calendarDate[currentMonth];
   let displayDates = monthData.slice(startDay, endDay);
-  
-    console.log(currentMonth);
     
   // 如果當月剩餘天數不足，從下個月補充
   if (displayDates.length < daysToShow) {

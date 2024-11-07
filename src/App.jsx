@@ -6,22 +6,26 @@ import { Provider } from 'react-redux';
 import { configureStore} from "@reduxjs/toolkit";
 
 import calendarSlice from './store/calendarSlice'
+import darkModeSlice  from './store/darkModeSlice';
+
 // store
 const store = configureStore({
   reducer:{
-    Calendar:calendarSlice
+    Calendar: calendarSlice,
+    darkMode: darkModeSlice ,
   }
 })
 
 
 function App() {
+
   return (
     <Provider store={store}>
-      <div className="App">
-        <HeaderRender />
-        <Control />
-        <Body />
-      </div>
+        <div className="App">
+            <HeaderRender />
+            <Control />
+            <Body />
+        </div>
     </Provider>
   )
 }

@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
-import { useState } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleDarkMode } from '../../store/darkModeSlice';
 
 // 切換按鈕樣式
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -62,13 +62,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const ToggleSwitch = () => {
-  // 設定 state 來追蹤主題狀態
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode);
   
   // 切換主題的處理函數
   const handleThemeToggle = () => {
-    setIsDarkMode(!isDarkMode);
+    dispatch(toggleDarkMode());
     document.documentElement.classList.toggle('dark', !isDarkMode);
   };
 

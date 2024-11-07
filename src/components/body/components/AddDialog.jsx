@@ -14,7 +14,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 const fabStyle = {
   position: "fixed",
   bottom: 16,
@@ -72,13 +71,14 @@ export default function AddDialog({ handle }) {
 
   return (
     <>
+    
       <div onClick={handleClickOpen}>
         <BasicTooltip />
       </div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add New TodoList</DialogTitle>
         <DialogContent>
-          <Box sx={{ height: 20, backgroundColor: "white" }} />
+          <Box sx={{ height: 20 }} />
           <TextField
             error={inputError}
             helperText={inputError ? "cannot be blank" : ""}
@@ -88,8 +88,8 @@ export default function AddDialog({ handle }) {
             value={inputValue}
             onChange={handleInputChange}
           />
-          <Box sx={{ height: 20, backgroundColor: "white" }} />
-        
+          <Box sx={{ height: 20 }} />
+          
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateTimePicker
                 label="Time"
@@ -109,7 +109,7 @@ export default function AddDialog({ handle }) {
               
               />
             </LocalizationProvider>
-       
+         
         </DialogContent>
         <DialogActions>
           <Button onClick={AgreeHandle} disabled={inputError || !inputValue}>
@@ -118,6 +118,7 @@ export default function AddDialog({ handle }) {
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>
+  
     </>
   );
 }
