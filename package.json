@@ -17,6 +17,7 @@
     "@mui/icons-material": "^6.1.5",
     "@mui/material": "^6.1.5",
     "@mui/x-date-pickers": "^7.22.0",
+    "@react-spring/parallax": "^9.7.5",
     "@react-spring/web": "^9.7.5",
     "@reduxjs/toolkit": "^2.2.7",
     "date-fns": "^3.6.0",

@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
-import Home from './pages/Home'
-import DashBoard from './pages/DashBoard'
+import Home from './home/Home'
+import DashBoard from './dashBoard/DashBoard'
 
 function App() {
 
