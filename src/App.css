@@ -7,6 +7,6 @@ body{
 .pool-box{
     box-shadow: 0px 1px 20px 0px #86868640;
 }
-#root{
+.App{
     height: 100vh;
 }

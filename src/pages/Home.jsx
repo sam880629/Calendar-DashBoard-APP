@@ -1,7 +1,7 @@
 import Start from "../components/Start"
 
 
-const  home = () => {
+const  Home = () => {
 
     return (
         <div className="App">
@@ -10,4 +10,4 @@ const  home = () => {
     )
 }
 
-export default  home
+export default  Home
