@@ -30,9 +30,10 @@ const TemporaryRow = ({ temporary }) => {
     <Fragment>
         <div ref={moonRowRef}></div>
         <Droppable droppableId={`tp-drop-0000-00-00-25`} direction="horizontal">
-        {(provided) => (
+        {(provided, snapshot) => (
             <div
-            className={`h-10 w-full bg-orange-100 dark:bg-gray-800 flex ${isSticky ? "md:fixed top-[80px] z-10" : ""}`}
+            className={`h-10 w-full bg-orange-100 dark:bg-gray-800 flex ${isSticky ? "md:fixed top-[80px] z-10 " : ""} 
+            ${snapshot.isDraggingOver?"bg-orange-300 dark:bg-gray-300":"" }`}
             {...provided.droppableProps}
             ref={provided.innerRef}
             >

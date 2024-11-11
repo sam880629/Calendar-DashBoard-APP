@@ -203,7 +203,9 @@ const CalendarSlice = createSlice({
     // 設定顯示筆數
     setDaysToShow(state, action) {
       const {daysToShow, init} =action.payload;
-      state.daysToShow = daysToShow;
+      //傳入值更新天數
+      if(daysToShow) state.daysToShow = daysToShow;
+    
       
       const startDay = init?state.startDay:moment().date()-2;
      

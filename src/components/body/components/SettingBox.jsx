@@ -35,7 +35,7 @@ export default function SettingBox({ booking, keyId, today,closeCard  }) {
         target_date: `${today}`,
       })
     );
-    dispatch(setDaysToShow({ daysToShow: 7, init: true })); 
+    dispatch(setDaysToShow({ daysToShow: false, init: true })); 
 };
 
   //更新handler
@@ -57,7 +57,7 @@ export default function SettingBox({ booking, keyId, today,closeCard  }) {
           target_date: `${today}`,
         })
       );
-    dispatch(setDaysToShow({ daysToShow: 7, init: true }));
+    dispatch(setDaysToShow({ daysToShow: false, init: true }));
     closeCard();
   };
 
