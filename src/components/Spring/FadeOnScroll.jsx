@@ -42,7 +42,7 @@ const FadeOnScroll = ({children }) => {
         </ParallaxLayer>
         <ParallaxLayer
 
-          offset={1.5}
+          offset={1}
           speed={1.5}
           style={{ ...alignCenter, justifyContent: "flex-start" }}
         >
@@ -53,8 +53,8 @@ const FadeOnScroll = ({children }) => {
 
         <ParallaxLayer
         
-          offset={2.5}
-          speed={1.5}
+          offset={2}
+          speed={1.6}
           style={{ ...alignCenter, justifyContent: "flex-start" }}
         >
           <div className={`${styles.card} ${styles.parallax} ${styles.blue}`}>

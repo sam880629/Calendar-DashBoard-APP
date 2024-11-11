@@ -8,10 +8,8 @@ const Home = () => {
   return (
     <div className="App">
       <div className="home" />
-          <FadeOnScroll >
-            <Start />
-            <Animated1 />
-          </FadeOnScroll >
+          <Start />
+          <Animated1 />
     </div>
   );
 };

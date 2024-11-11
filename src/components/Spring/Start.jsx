@@ -24,7 +24,7 @@ const Start = () => {
     toggle(!open);
     setTimeout(() => {
       navigate("/dashBoard");
-    }, 2800);
+    }, 1500);
   };
 
   return (
@@ -33,7 +33,7 @@ const Start = () => {
       onClick={goDashBoard}
     >
       <animated.svg
-        className="w-[150px] md:w-[350px]"
+        className="w-[150px] md:w-[350px] z-10"
         style={{ scale, opacity }}
         viewBox="0 0 1278 446"
       >
@@ -66,9 +66,9 @@ const Start = () => {
       </animated.svg>
       {/* welcome */}
       <animated.svg
-        className="w-[150px] md:w-[350px]"
+        className="w-[150px] md:w-[350px] z-10 "
         style={{ scale, opacity }}
-        viewBox="0 0 1278 446"
+        viewBox="0 0 1278 150"
       >
         <defs>
           <filter id="water">
@@ -95,7 +95,12 @@ const Start = () => {
             fill="White"
           />
         </g>
+       
       </animated.svg>
+      <animated.div className="bg-white  font-bold z-10 py-2 px-5 border rounded-xl cursor-pointer"
+      style={{opacity}}>
+          Started
+       </animated.div>
     </div>
   );
 };
