@@ -29,11 +29,11 @@ const Start = () => {
 
   return (
     <div
-      className="flex flex-col  items-center justify-center h-full"
+      className="flex flex-col  items-center justify-center h-full ml-2 md:xl:m-0"
       onClick={goDashBoard}
     >
       <animated.svg
-        className="w-[150px] md:w-[350px] z-10"
+        className="w-[200px] md:w-[400px] z-10"
         style={{ scale, opacity }}
         viewBox="0 0 1278 446"
       >
@@ -66,7 +66,7 @@ const Start = () => {
       </animated.svg>
       {/* welcome */}
       <animated.svg
-        className="w-[150px] md:w-[350px] z-10 "
+        className="w-[200px] md:w-[400px] z-10 "
         style={{ scale, opacity }}
         viewBox="0 0 1278 150"
       >

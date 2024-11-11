@@ -29,7 +29,7 @@ const Animated = ()=>{
                   style={{
                     ...style,
                     borderLeft: '4px solid white', 
-                    width: '2px', 
+                    width: '4px', 
                     position: 'absolute',
                     bottom: '0px',
                     right: '15%',
