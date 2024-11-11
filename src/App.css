@@ -9,4 +9,5 @@ body{
 }
 .App{
     height: 100vh;
+    max-height: -webkit-fill-available;
 }
