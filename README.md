@@ -17,8 +17,15 @@ Currently, two official plugins are available:
 * 深色模式支援：提供深色模式，適應不同環境的顯示需求，保護視力並提升使用體驗。
 
 ## Live Demo
+[![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#)
 Live Demo ➡️<a href="https://calendar-dash-board-app.vercel.app/">Demo live</a>
 
+## Tech
+[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#)
+[![Redux](https://img.shields.io/badge/Redux-764ABC?logo=redux&logoColor=fff)](#)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)](#)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff)](#)
+[![MUI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)](#)
 ## Demo
 * 主頁畫面(淺色模式)
 <img src="https://github.com/user-attachments/assets/74422c20-cc04-4878-85bc-3a11b069af1e" width="600">
