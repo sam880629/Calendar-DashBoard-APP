@@ -1,6 +1,7 @@
 import { useSpring, animated } from "@react-spring/web";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 const AnimFeTurbulence = animated("feTurbulence");
 const AnimFeDisplacementMap = animated("feDisplacementMap");
@@ -68,7 +69,7 @@ const Start = () => {
       <animated.svg
         className="w-[200px] md:w-[400px] z-10 "
         style={{ scale, opacity }}
-        viewBox="0 0 1278 150"
+        viewBox="0 0 1278 200"
       >
         <defs>
           <filter id="water">
@@ -97,9 +98,9 @@ const Start = () => {
         </g>
        
       </animated.svg>
-      <animated.div className="bg-white  font-bold z-10 py-2 px-5 border rounded-xl cursor-pointer"
+      <animated.div className="bg-white  font-bold z-10  border rounded-xl cursor-pointer shadow-lg"
       style={{opacity}}>
-          Started
+          <Button variant="contained" color="white" sx={{fontWeight:700}}>Start DashBoard</Button>
        </animated.div>
     </div>
   );
