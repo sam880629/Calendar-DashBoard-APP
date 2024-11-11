@@ -13,7 +13,7 @@ const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
 
   const bookingList = todoList;
   // class 樣式設定
-  let containerClasses = `flex-1 pt-1 pl-1 border-r  border-b relative bg-white  dark:bg-gray-700 dark:border-gray-800`;
+  let containerClasses = `flex-1 pt-1 pl-1 border-r  border-b relative   dark:border-gray-800`;
   
   // 篩選符合時間的預約
   const filteredBookings = bookingList.filter(
@@ -24,7 +24,7 @@ const RoomBooking = ({ todoList = [], hour ,today, keyId}) => {
     <Droppable droppableId={`${keyId}-drop-${today}-${hour}`} >
       {(provided, snapshot) => (
         <div
-          className={`${containerClasses} ${snapshot.isDraggingOver?"bg-[#eff5f7] dark:bg-[#43768d]":"" }`}
+          className={`${containerClasses} ${snapshot.isDraggingOver?"bg-[#eff5f2] dark:bg-[#43768d]": "dark:bg-gray-700  bg-white" }`}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
