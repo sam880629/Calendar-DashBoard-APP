@@ -33,7 +33,7 @@ const TemporaryRow = ({ temporary }) => {
         {(provided, snapshot) => (
             <div
             className={`h-10 w-full bg-orange-100 dark:bg-gray-800 flex ${isSticky ? "md:fixed top-[80px] z-10 " : ""} 
-            ${snapshot.isDraggingOver?"bg-orange-300 dark:bg-gray-300":"" }`}
+            ${snapshot.isDraggingOver?"bg-orange-300 dark:bg-gray-400":"" }`}
             {...provided.droppableProps}
             ref={provided.innerRef}
             >
