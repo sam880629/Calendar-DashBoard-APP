@@ -21,10 +21,17 @@ Live Demo ➡️<a href="https://calendar-dash-board-app.vercel.app/">Demo live<
 
 ## Demo
 * 主頁畫面(淺色模式)
-![image](https://github.com/user-attachments/assets/74422c20-cc04-4878-85bc-3a11b069af1e)
+<img src="https://github.com/user-attachments/assets/74422c20-cc04-4878-85bc-3a11b069af1e" width="600">
+<br>
+
 * 主頁畫面(深色模式)
-![image](https://github.com/user-attachments/assets/63afb195-9c83-46f0-ab22-525c1bd0e631)
-* 新增待辦事項
-![fb1d3f66-8611-424c-afa6-aacdbdc77556](https://github.com/user-attachments/assets/a5a2d190-c3dc-4d2d-a268-663609e463ef)
-* 移動卡片到想要的時間
-![錄製內容 2024-11-07 153131 (1) (1)](https://github.com/user-attachments/assets/eb1d61e6-d392-4710-a345-e8bcc363e6d3)
+<img src="https://github.com/user-attachments/assets/63afb195-9c83-46f0-ab22-525c1bd0e631" width="600">
+<br>
+
+* 新增待辦事項<br>
+
+![2024-11-11141507-ezgif com-video-to-gif-converter (1)](https://github.com/user-attachments/assets/d71eff76-7828-48e3-8aef-d01a1d44885a)
+
+* 自由移動卡片到想要的時間<br>
+
+![2024-11-11141507-ezgif com-video-to-gif-converter (2)](https://github.com/user-attachments/assets/7a0b4362-0957-41df-baa9-2f2bb420cab5)
