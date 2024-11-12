@@ -16,8 +16,8 @@ import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 
 const fabStyle = {
   position: "fixed",
-  bottom: 40,
-  right: 80,
+  bottom: 20,
+  right: 20,
   bgcolor: "#426976",
   "&:hover": {
     bgcolor: "#244871",
