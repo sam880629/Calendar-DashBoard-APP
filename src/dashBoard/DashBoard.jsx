@@ -19,9 +19,11 @@ const store = configureStore({
      return (
         <Provider store={store}>
             <div className="App">
+              <div className='m-8 rounded-xl border-[10px] border-gray-400  dark:border-gray-950 z-10'>
                 <HeaderRender />
                 <Control />
                 <Body />
+              </div>
             </div>
         </Provider>
      )

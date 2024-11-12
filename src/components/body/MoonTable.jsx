@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, memo, useEffect, useState } from "react";
 import MoonRow from "./MoonRow";
 import TimeRow from "./TimeRow";
 import { useDispatch, useSelector } from "react-redux";
