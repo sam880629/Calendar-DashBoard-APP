@@ -1,6 +1,6 @@
 import moment from "moment";
 import { createSlice } from "@reduxjs/toolkit";
-
+// 待辦事項
 const getTodoList =(date)=>{
  
   const day = moment(date, "YYYY-M-D").format("D");
@@ -8,6 +8,7 @@ const getTodoList =(date)=>{
   const todayDate =  moment().date(); 
   const todayMonth =  moment().month() + 1;
 
+  
   // 加入待辦事項
   const todos = {
     [`${todayDate}_${todayMonth}`]: [
@@ -49,6 +50,7 @@ const getTodoList =(date)=>{
 const getDaysInYear = (year) => {
   const yearData = [];
 
+
   // 12 個月的日期
   for (let month = 0; month < 12; month++) {
     const mmt = moment().year(year).month(month);
@@ -67,24 +69,24 @@ const getDaysInYear = (year) => {
 
     yearData[month] = monthDays;
   }
- 
+  
   return yearData;
 };
 
 // 取得要顯示的日期資料
 const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToShow, type) => {
-
+ 
   // 取得當前月份的日期
   const monthData = calendarDate[currentMonth];
   let displayDates = monthData.slice(startDay, endDay);
-    
+ 
+  
   // 如果當月剩餘天數不足，從下個月補充
   if (displayDates.length < daysToShow) {
     const remainingDays = daysToShow - displayDates.length;
     // 下個月是12月的話，回到1月
     let nextMonth =  0;
     let nextMonthDays = {}
-    
 
     if(type=='next'){
       nextMonth = (currentMonth + 1) % 12
@@ -127,7 +129,6 @@ const initialState = {
   startDay: 0, // 目前顯示的開始天數
   daysToShow: 7, // 要顯示的天數
   showData: [],
-
 };
 
 const CalendarSlice = createSlice({
@@ -205,10 +206,10 @@ const CalendarSlice = createSlice({
       const {daysToShow, init} =action.payload;
       //傳入值更新天數
       if(daysToShow) state.daysToShow = daysToShow;
-    
       
-      const startDay = init?state.startDay:moment().date()-2;
-     
+      const startDay = init?state.startDay:moment().date()-1;
+   
+    
       const result = getDisplayDates(
         state.CalendarDate,
         state.currentMonth,
@@ -217,12 +218,15 @@ const CalendarSlice = createSlice({
         state.daysToShow
       );
       // 更新狀態
+      
       state.showData = result.displayDates;
       state.startDay = startDay
       state.currentMonth = result.currentMonth ;
     },
     // 返回今日
     setToday(state, action){
+     
+     
       const today = moment().date()-2;
       state.currentMonth= moment().month()
       const result = getDisplayDates(

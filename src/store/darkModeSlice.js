@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState={ isDarkMode: false };
 
-
+// 深淺模式
 const darkModeSlice = createSlice({
   name: 'darkMode',
   initialState,
