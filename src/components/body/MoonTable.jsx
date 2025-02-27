@@ -147,7 +147,11 @@ const MoonTable = () => {
       const targetBookingData = Array.from(
         displayDates[destinationParts[0]].todoList
       );
+
       targetBookingData.splice(destinationIndex, 0, removed);
+
+    
+      
       updateCalendar(targetBookingData, destinationParts[3], destinationDate);
       handleWindowWidth(true);
       return;

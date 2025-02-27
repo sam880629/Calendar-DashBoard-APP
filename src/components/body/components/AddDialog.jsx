@@ -64,7 +64,8 @@ export default function AddDialog({ handle }) {
       setInputError(true);
       return;
     }
-
+    console.log(timeValue);
+    
     setOpen(false);
     handle(inputValue, timeValue);
   };

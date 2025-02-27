@@ -8,7 +8,6 @@ const getTodoList =(date)=>{
   const todayDate =  moment().date(); 
   const todayMonth =  moment().month() + 1;
 
-  
   // 加入待辦事項
   const todos = {
     [`${todayDate}_${todayMonth}`]: [
@@ -69,7 +68,7 @@ const getDaysInYear = (year) => {
 
     yearData[month] = monthDays;
   }
-  
+
   return yearData;
 };
 
@@ -80,6 +79,7 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
   const monthData = calendarDate[currentMonth];
   let displayDates = monthData.slice(startDay, endDay);
  
+  console.log(calendarDate);
   
   // 如果當月剩餘天數不足，從下個月補充
   if (displayDates.length < daysToShow) {
@@ -121,7 +121,6 @@ const getDisplayDates = (calendarDate, currentMonth, startDay, endDay, daysToSho
 
 // 初始化狀態
 const initialState = {
-
   currentDay: moment().day(),//現在星期
   currentMonth: moment().month(), // 現在月份
   currentYear: moment().year(), // 現在年份
@@ -207,7 +206,7 @@ const CalendarSlice = createSlice({
       //傳入值更新天數
       if(daysToShow) state.daysToShow = daysToShow;
       
-      const startDay = init?state.startDay:moment().date()-1;
+      const startDay = init?state.startDay:moment().date()-2;
    
     
       const result = getDisplayDates(
@@ -225,8 +224,6 @@ const CalendarSlice = createSlice({
     },
     // 返回今日
     setToday(state, action){
-     
-     
       const today = moment().date()-2;
       state.currentMonth= moment().month()
       const result = getDisplayDates(
